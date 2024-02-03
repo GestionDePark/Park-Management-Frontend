@@ -1,7 +1,7 @@
 # Park Management UI
 This repository contains the user interface of our project: `Park Management`
 
-The deployment link is [here](https://park-manager.vercel.app/)
+The deployment link is [here](https://park-management.vercel.app/)
 
 ## Running the app
 - with *npm*
