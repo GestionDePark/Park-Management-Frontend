@@ -10,7 +10,7 @@ const router = createBrowserRouter([{
   path: '/',
   element: <App />,
 },{
-  path: '/form',
+  path: '/login',
   element: <Form />
 }])
 const root = ReactDOM.createRoot(document.getElementById('root'));
