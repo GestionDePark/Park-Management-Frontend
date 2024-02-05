@@ -1,7 +1,7 @@
 import React from 'react'
 import Input from '../../Input/Input'
 import Button from '../../Button/Button'
-import handleSignIn from '../../services/auth/HandleSignIn'
+import handleSignIn from '../../../services/auth/HandleSignIn'
 import { useState } from 'react'
 import { redirect } from 'react-router-dom'
 
