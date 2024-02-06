@@ -48,7 +48,9 @@ const handleSubmit = async (e) => {
     
 } 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="w-full h-full flex justify-center items-center">
+  <div className='max-w-sm bg-white border rounded-lg shadow-lg p-6'>
+    <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
       </div>
@@ -57,15 +59,15 @@ const handleSubmit = async (e) => {
           <Input id="email" name="email" type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} />
           {isValid.email && <div className="text-red-500">Invalid email format</div>}
           <Input id="password" name="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          {isValid.password && <div className="text-red-500">Password must be between 8 and 24 characters</div>}
           {isValid.message && <div className="text-red-500">{isValid.message}</div>}
           <div>
-            <Button type = "submit">Sign in</Button>
+            <Button type="submit">Sign in</Button>
           </div>
         </form>
-
       </div>
     </div>
+  </div>
+</div>
   )
 }
 
