@@ -20,7 +20,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const validateEmail = !email.match(EMAIL_REGEX) || email === ''
-    const validatePassword = password.length >= 8 || password === ''
+    const validatePassword = password !== '' && password.length >= 8
     setIsValid({
       email: validateEmail,
       password: validatePassword
