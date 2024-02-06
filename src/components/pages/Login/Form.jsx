@@ -60,7 +60,7 @@ const handleSubmit = async (e) => {
           {isValid.password && <div className="text-red-500">Password must be between 8 and 24 characters</div>}
           {isValid.message && <div className="text-red-500">{isValid.message}</div>}
           <div>
-            <Button >Sign in</Button>
+            <Button type = "submit">Sign in</Button>
           </div>
         </form>
 
