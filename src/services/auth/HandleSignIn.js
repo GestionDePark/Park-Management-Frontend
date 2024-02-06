@@ -1,15 +1,15 @@
 import fetcher from '../api/Axios';
+import { StorageProvider } from '../storage/storage'
 
 const login_URL = '/login';
-
-const handleSignIn = async (email, password) => {
+const handleSignIn = async (email, password,navigate) => {
     try {
         const response = await fetcher.post(login_URL, {
             email: email,
             password: password
         });
-        console.log(response.data);
-        return response.data; 
+        StorageProvider.setItem('authToken',response.data.token)
+        navigate('/dashboard')
     } catch (error) {
         console.error('Error:', error);
         if (error.response) {
