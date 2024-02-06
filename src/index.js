@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import Form from './components/pages/Login/Form'
+import PrivateRoute from './services/private/PrivateRoute';
+import Dashboard from './components/pages/Dashboard/Dashboard';
 
 const router = createBrowserRouter([{
   path: '/',
@@ -12,7 +14,11 @@ const router = createBrowserRouter([{
 },{
   path: '/login',
   element: <Form />
-}])
+},{
+  path:'/dashboard',
+  element: <PrivateRoute component={<Dashboard />} />
+}
+])
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
