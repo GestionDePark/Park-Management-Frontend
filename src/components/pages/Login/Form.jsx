@@ -14,11 +14,11 @@ const [isValid,setIsValid] = useState({
   password:false,
   message:''
 })
+const navigate = useNavigate()
 
 const handleSubmit = async (e) => {
     e.preventDefault();
     const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const navigate = useNavigate()
     const validateEmail = !email.match(EMAIL_REGEX) || email === ''
     const validatePassword = password.length >= 8 || password === ''
     setIsValid({
