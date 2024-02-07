@@ -3,26 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Form from './components/pages/Login/Form'
 import PrivateRoute from './services/private/PrivateRoute';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 
-const router = createBrowserRouter([{
-  path: '/',
-  element: <App />,
-},{
-  path: '/login',
-  element: <Form />
-},{
-  path:'/dashboard',
-  element: <PrivateRoute component={<Dashboard />} />
-}
-])
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router = {router} / >
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/login" element={<Form />} />
+        <Route path={"/dashboard"} element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 

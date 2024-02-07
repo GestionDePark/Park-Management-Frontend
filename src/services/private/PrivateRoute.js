@@ -1,19 +1,13 @@
 import { Navigate } from "react-router-dom"
 import { StorageProvider } from "../storage/storage"
-const PrivateRoute = ({component: Component, ...props}) => {
+const PrivateRoute = ({children}) => {
      const isAuthenticated = StorageProvider.getItem('authToken') !== null
 
      return (
         isAuthenticated ? (
-            <Component {...props} />
+            children
         ) : (
-            <Navigate
-                to={{
-                    pathname: '/login',
-                    state: {from: props.location},
-                }}
-                replace
-            />
+            <Navigate to= '/login' replace />
         )
     )
 
