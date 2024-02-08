@@ -4,12 +4,19 @@ import SampleEmployee from '@/pages/Admin/Dashboard/SampleEmployee.tsx';
 import { useEffect, useRef, useState } from 'react';
 import { EmployeeData } from '@/api/types.ts';
 import EmployeeApi from '@/api/employee.ts';
+import useErrorPopup from '@/hooks/useErrorPopup.tsx';
 
 const Dashboard = () => {
   const renderIncr = useRef(0);
   const [data, setData] = useState<EmployeeData[]>([]);
+  const [errorNode, setErrorNode] = useErrorPopup();
+
   const fetchData = async () => {
-    setData(await EmployeeApi.findAll());
+    try {
+      setData(await EmployeeApi.findAll());
+    } catch (e) {
+      setErrorNode(e as Error);
+    }
   };
 
   useEffect(() => {
@@ -26,6 +33,7 @@ const Dashboard = () => {
       <Paper elevation={3} sx={{ padding: '1.2rem' }}>
         <SampleEmployee data={data} />
       </Paper>
+      {errorNode}
     </Dashy>
   );
 };

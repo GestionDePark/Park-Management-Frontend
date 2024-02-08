@@ -15,7 +15,11 @@ const Employee = () => {
 
   const [data, setData] = useState<EmployeeData[]>([]);
   const fetchData = async () => {
-    setData(await EmployeeApi.findAll());
+    try {
+      setData(await EmployeeApi.findAll());
+    } catch (e) {
+      setErrorNode(e as Error);
+    }
   };
 
   useEffect(() => {
