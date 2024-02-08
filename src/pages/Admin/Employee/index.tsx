@@ -10,7 +10,6 @@ const Employee = () => {
   const countFetch = useRef(0);
   const [errorNode, setErrorNode] = useErrorPopup();
 
-  const [selectLength, setSelectLength] = useState(0);
   const [selected, setSelected] = useState<number[]>([]);
 
   const [data, setData] = useState<EmployeeData[]>([]);
@@ -44,8 +43,12 @@ const Employee = () => {
     }
   };
 
+  const handleSelect = (indexes: number[]) => {
+    setSelected(indexes);
+  };
+
   const SwitchBtnFeatures = () => {
-    switch (selectLength) {
+    switch (selected.length) {
       case 0:
         return <Button variant="outlined">Add new</Button>;
       case 1:
@@ -64,10 +67,6 @@ const Employee = () => {
           </Button>
         );
     }
-  };
-
-  const handleSelect = (indexes: number[]) => {
-    setSelectLength(indexes.length);
   };
 
   return (

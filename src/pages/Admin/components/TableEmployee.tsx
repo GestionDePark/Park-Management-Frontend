@@ -35,10 +35,14 @@ const TableEmployee = ({ data, onSelect, limitData }: Props) => {
     return (ev) => {
       const isChecked: boolean = ev.target.checked;
       if (isChecked) {
-        setSelected((p) => p.concat(index));
+        const d = selected.concat(index);
+        if (onSelect) onSelect(d);
+        setSelected(d);
       } else {
         setSelected((p) => {
-          return p.filter((v) => v !== index);
+          const d = p.filter((v) => v !== index);
+          if (onSelect) onSelect(d);
+          return d;
         });
       }
     };
