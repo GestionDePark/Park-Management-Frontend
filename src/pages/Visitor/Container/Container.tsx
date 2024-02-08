@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import bemaraha from '../photo/bemaraha.jpeg';
+import bemaraha from '../photo/Tsingy-de-Bemaraha-5.jpg';
 
 const Container = () => {
   return (
