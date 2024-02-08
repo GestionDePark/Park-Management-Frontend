@@ -1,8 +1,6 @@
-import { BiSearch } from 'react-icons/bi';
-import { Box, Button, styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { FaRegUser } from 'react-icons/fa6';
-import SearchInput from '@/components/SearchInput';
 
 const Navli = () => {
   return (
@@ -13,14 +11,6 @@ const Navli = () => {
         </p>
       </Box>
 
-      <form className="flex items-center w-1/3 gap-2 shadow-md rounded-lg">
-        <SearchInput name="q" placeholder="Enter keywords" />
-
-        <Button sx={BUTTON_SEARCH_STYLE}>
-          <BiSearch fontSize="1.6rem" />
-        </Button>
-      </form>
-
       <Box display="flex" gap=".8rem" px="1rem">
         <UserLink to="/login" color="#aeafa8">
           <FaRegUser fontSize="1.2rem" />
@@ -28,13 +18,6 @@ const Navli = () => {
       </Box>
     </header>
   );
-};
-
-const BUTTON_SEARCH_STYLE = {
-  minWidth: 0,
-  padding: '.4rem .8rem',
-  borderRadius: '.8rem',
-  flexShrink: 0,
 };
 
 const UserLink = styled(Link)(({ color, theme }) => ({

@@ -29,7 +29,7 @@ const Container = () => {
         the guide:
       </Typography>
       <Typography color="green" variant="h5" textAlign="center">
-        #1 Parc National Tsingy de Bemaraha
+        #1 Tsingy de Bemaraha National Park
       </Typography>
       <Typography
         pt={5}
