@@ -5,7 +5,7 @@ import pageRoutes from '@/pageRoutes.ts';
 import Dashboard from '@/pages/Admin/Dashboard';
 import Employee from '@/pages/Admin/Employee';
 import SecureRoute from '@/layer/SecureRoute.tsx';
-import Login from '@/pages/auth/login';
+import { Login } from '@/pages/Login/index.tsx';
 import NavLi from './pages/Visitor/Navlink';
 
 const App = () => {

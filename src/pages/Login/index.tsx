@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -10,12 +9,17 @@ import Box from '@mui/material/Box';
 import { MdLockOutline, MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import Typography, { TypographyOwnProps } from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { IconButton, InputAdornment, Snackbar, ThemeProvider } from '@mui/material';
+import { IconButton, InputAdornment, ThemeProvider } from '@mui/material';
 import { useState } from 'react';
-import { api } from '../../api';
 import image from '../../assets/login/bg1.jpg'
 import { theme } from './theme.ts';
 import { ForgotPasswordDialog } from './ForgotPasswordDialog.tsx';
+import { LoginData } from '@/services/auth/types.ts';
+import Auth from '@/services/auth';
+import pageRoutes from '@/pageRoutes.ts';
+import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 function Copyright(props: TypographyOwnProps) {
   return (
@@ -31,38 +35,33 @@ function Copyright(props: TypographyOwnProps) {
 export function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [forgotPasswordHint, setForgotPasswordHint] = useState(false)
+  const [forgotPasswordHint, setForgotPasswordHint] = useState(false);
+  const [nodeError, setErrorNode] = useErrorPopup();
+  const nav = useNavigate();
+  const { handleSubmit, register } = useForm<LoginData>();
 
-  const alert = (alertMessage: string) => {
-    setAlertMessage(alertMessage);
-    setShowAlert(true);
-  }
+  const handleLogin = async (data: LoginData) => {
+    try {
+      await Auth.login(data);
+      nav(pageRoutes.home);
+    } catch (e) {
+      setErrorNode(e as Error);
+      toggleLoading();
+    }
+  };
 
-  const hideAlert = () => {
-    setShowAlert(false);
-  }
   const toggleLoading = () => {
     setIsLoading(prevState => !prevState)
   }
   const togglePasswordVisibility = () => {
     setShowPassword(prev => !prev);
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const _handleSubmit = (data: LoginData) => {
     toggleLoading();
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    api.login({
-      email: data.get('email') as string,
-      password: data.get('password') as string,
-      remember: !!data.get('remember'),
-    }).then((authenticated) => {
-      alert('signed up successfully')
-    }).catch(reason => {
-      toggleLoading();
-      alert(reason.toString())
-    })
+    handleLogin({
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
@@ -117,23 +116,21 @@ export function Login() {
             <Typography component="h1" variant="h5">
             Please Sign In to continue
           </Typography>
-            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={handleSubmit(_handleSubmit)} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
                 label="Email Address"
-                name="email"
                 autoComplete="email"
                 autoFocus
-
+                {...register('email')}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Password"
                 type={showPassword ? 'text' : 'password'}
                 InputProps={{
@@ -151,11 +148,13 @@ export function Login() {
                 }}
                 id="password"
                 autoComplete="current-password"
+                {...register('password')}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
-                name={'remember'}
                 label="Remember me"
+                // TODO: add remember value
+                //{...register('remember')}
               />
               <Button
                 disabled={isLoading}
@@ -183,12 +182,7 @@ export function Login() {
             setForgotPasswordHint(prevState => !prevState)
           }}
         />
-        <Snackbar
-          open={showAlert}
-          autoHideDuration={6000}
-          onClose={hideAlert}
-          message={alertMessage}
-        />
+        {nodeError}
       </Container>
     </ThemeProvider>
   );
