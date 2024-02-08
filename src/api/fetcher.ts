@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const fetcher = axios.create({
-  baseURL: 'https://park-api.up.railway.app',
+  baseURL: !import.meta.env.DEV
+    ? 'https://park-api.up.railway.app'
+    : 'http://localhost:8080',
   headers: {
     Accept: '*/*',
   },

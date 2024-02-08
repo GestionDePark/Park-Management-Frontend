@@ -21,7 +21,7 @@ const RowEmployee = ({
   rowIndex,
   checkbox,
 }: Props) => {
-  const renderIncrement = useRef(0);
+  const countFetch = useRef(0);
   const [job, setJob] = useState<JobData | null>(null);
   const [user, setUser] = useState<UserData | null>(null);
 
@@ -31,11 +31,11 @@ const RowEmployee = ({
   };
 
   useEffect(() => {
-    if (renderIncrement.current === 1) {
+    if (countFetch.current < 4) {
       fetchData();
     }
-    if (renderIncrement.current < 2) {
-      renderIncrement.current++;
+    if (countFetch.current <= 4) {
+      countFetch.current++;
     }
   });
 

@@ -22,7 +22,9 @@ const Employee = () => {
     } catch (e) {
       setErrorNode(e as Error);
     }
-    countFetch.current++;
+    if (countFetch.current <= 4) {
+      countFetch.current++;
+    }
   };
 
   useEffect(() => {
