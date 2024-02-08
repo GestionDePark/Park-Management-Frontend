@@ -24,6 +24,14 @@ class User {
       headers: getAuthorization(),
     });
   }
+
+  public static async findAll(): Promise<UserData[]> {
+    return (
+      await fetcher.get('/user', {
+        headers: getAuthorization(),
+      })
+    ).data;
+  }
 }
 
 export default User;
