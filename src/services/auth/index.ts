@@ -40,8 +40,8 @@ class Auth {
 
   public static async login(data: LoginData): Promise<LoginResponse> {
     const res: LoginResponse = await getToken(data);
-    this.currentUser = await User.findSelf();
     storage.local.set('user_token', res.token);
+    this.currentUser = await User.findSelf();
     return res;
   }
 
