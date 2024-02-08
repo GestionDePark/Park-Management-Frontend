@@ -43,9 +43,4 @@ const UserLink = styled(Link)(({ color, theme }) => ({
   backgroundColor: color || theme.palette.primary.main,
 }));
 
-const Img = styled('img')({
-  width: '2.6rem',
-  height: '2.6rem',
-});
-
 export default Navli;

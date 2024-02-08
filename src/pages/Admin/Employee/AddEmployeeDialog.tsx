@@ -11,32 +11,32 @@ import Job from '@/api/job.ts';
 import DialogContentText from '@mui/material/DialogContentText';
 import { useForm } from 'react-hook-form';
 
-export const AddEmployeeDialog = (props: DialogProps & {
-  onCloseClick: () => void
-}) => {
+export const AddEmployeeDialog = (
+  props: DialogProps & {
+    onCloseClick: () => void;
+  },
+) => {
   const [users, setUsers] = useState<UserData[]>([]);
   const [jobs, setJobs] = useState<JobData[]>([]);
   const [firstRender, setFirstRender] = useState(true);
-  const { handleSubmit, register } = useForm<EmployeeData>();
+  const { register } = useForm<EmployeeData>();
 
   useEffect(() => {
     if (firstRender) {
       setFirstRender(false);
-      User.findAll().then(users => setUsers(users));
-      Job.findAll().then(jobs => setJobs(jobs));
+      User.findAll().then((users) => setUsers(users));
+      Job.findAll().then((jobs) => setJobs(jobs));
     }
-  }, []);
+  }, [firstRender]);
 
   return (
-    <Dialog
-      {...props}
-    >
+    <Dialog {...props}>
       <DialogTitle>Add new Employee</DialogTitle>
       <DialogContent
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 2
+          gap: 2,
         }}
       >
         <DialogContentText>
@@ -44,28 +44,32 @@ export const AddEmployeeDialog = (props: DialogProps & {
         </DialogContentText>
         <Autocomplete
           fullWidth
-          getOptionLabel={option => `${option.firstName} ${option.lastName}`}
+          getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
           id="user-list"
           options={users}
           aria-required
-          renderInput={(params) => <TextField
-            {...params}
-            label="User"
-            required
-            {...register('userId')}
-          />}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="User"
+              required
+              {...register('userId')}
+            />
+          )}
         />
         <Autocomplete
           fullWidth
-          getOptionLabel={option => `${option.name}`}
+          getOptionLabel={(option) => `${option.name}`}
           id="jobs-list"
           options={jobs}
-          renderInput={(params) => <TextField
-            {...params}
-            label="Job"
-            required
-            {...register('jobId')}
-          />}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Job"
+              required
+              {...register('jobId')}
+            />
+          )}
         />
         <TextField
           type={'number'}
@@ -75,10 +79,10 @@ export const AddEmployeeDialog = (props: DialogProps & {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.onCloseClick}>
-          Cancel
+        <Button onClick={props.onCloseClick}>Cancel</Button>
+        <Button type="submit" variant={'contained'}>
+          Save
         </Button>
-        <Button type="submit" variant={'contained'}>Save</Button>
       </DialogActions>
     </Dialog>
   );
