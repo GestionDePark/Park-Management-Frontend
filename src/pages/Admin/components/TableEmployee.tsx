@@ -64,6 +64,7 @@ const TableEmployee = ({ data, onSelect, limitData }: Props) => {
         {(limitData ? data.slice(0, limitData) : data).map((v, i) => (
           <RowEmployee
             data={v}
+            key={v.id}
             checkbox={!!onSelect}
             selected={selected}
             rowIndex={i}
