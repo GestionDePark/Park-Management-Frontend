@@ -16,7 +16,7 @@ const AppLogo = () => {
   return (
     <CustomContainer to={pageRoutes.home}>
       <MdPark fontSize="2rem" />
-      <span>Park Mada</span>
+      <span>MadaPark</span>
     </CustomContainer>
   );
 };
