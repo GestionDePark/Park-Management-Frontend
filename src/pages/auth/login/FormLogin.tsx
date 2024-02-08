@@ -1,5 +1,5 @@
 import { Button, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import pageRoutes from '@/pageRoutes.ts';
 import { useForm } from 'react-hook-form';
 import { LoginData } from '@/services/auth/types.ts';
@@ -7,12 +7,14 @@ import useErrorPopup from '@/hooks/useErrorPopup.tsx';
 import Auth from '@/services/auth';
 
 const FormLogin = () => {
+  const nav = useNavigate();
   const { handleSubmit, register } = useForm<LoginData>();
   const [nodeError, setErrorNode] = useErrorPopup();
 
   const handleLogin = async (data: LoginData) => {
     try {
       await Auth.login(data);
+      nav(pageRoutes.home);
     } catch (e) {
       setErrorNode(e as Error);
     }
