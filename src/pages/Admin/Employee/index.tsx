@@ -5,14 +5,19 @@ import EmployeeApi from '@/api/employee.ts';
 import { EmployeeData } from '@/api/types.ts';
 import useErrorPopup from '@/hooks/useErrorPopup.tsx';
 import { Dashy } from '../Dashy';
+import { AddEmployeeDialog } from '@/pages/Admin/Employee/AddEmployeeDialog.tsx';
 
 const Employee = () => {
+  const renderIncr = useRef(0);
   const countFetch = useRef(0);
   const [errorNode, setErrorNode] = useErrorPopup();
 
   const [selected, setSelected] = useState<number[]>([]);
 
   const [data, setData] = useState<EmployeeData[]>([]);
+
+  const [openAddDialog, setOpenAddDialog] = useState(false);
+
   const fetchData = async () => {
     try {
       if (data.length === 0 && countFetch.current < 4) {
@@ -27,8 +32,13 @@ const Employee = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  });
+    if (renderIncr.current === 1) {
+      fetchData();
+    }
+    if (renderIncr.current < 2) {
+      renderIncr.current++;
+    }
+  }, []);
 
   const handleDelete = async () => {
     for (const i of selected) {
@@ -50,7 +60,12 @@ const Employee = () => {
   const SwitchBtnFeatures = () => {
     switch (selected.length) {
       case 0:
-        return <Button variant="outlined">Add new</Button>;
+        return <Button variant="outlined" onClick={() => {
+          setOpenAddDialog(true);
+        }}
+        >
+          Add new
+        </Button>;
       case 1:
         return (
           <div className="center-flex gap-2">
@@ -80,6 +95,23 @@ const Employee = () => {
       </div>
       <TableEmployee data={data} onSelect={handleSelect} />
       {errorNode}
+      <AddEmployeeDialog
+        open={openAddDialog}
+        onClose={() => {
+          setOpenAddDialog(false);
+        }}
+        fullWidth
+        PaperProps={{
+          component: 'form',
+          onSubmit: {},
+          sx: {
+            borderRadius: '10px',
+            minWidth: '420px',
+          }
+        }}
+       onCloseClick={() => {
+         setOpenAddDialog(false)
+       }}/>
     </Dashy>
   );
 };
