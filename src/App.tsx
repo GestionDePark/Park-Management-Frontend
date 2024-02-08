@@ -6,6 +6,7 @@ import Dashboard from '@/pages/Admin/Dashboard';
 import Employee from '@/pages/Admin/Employee';
 import SecureRoute from '@/layer/SecureRoute.tsx';
 import Login from '@/pages/auth/login';
+import NavLi from './pages/Visitor/Navlink';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             Component={SecureRoute(Employee, ['admin'])}
           />
           <Route path={pageRoutes.login} Component={Login} />
+          <Route path={pageRoutes.home} Component={NavLi} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
