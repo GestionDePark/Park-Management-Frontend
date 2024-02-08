@@ -32,7 +32,7 @@ const FaceBody = () => {
         >
           {/* Texte */}
           <Typography color="white" variant="h4" textAlign="center">
-            Top parcs nationaux de Madagascar
+            Top national parks in Madagascar
           </Typography>
         </Box>
       </Box>

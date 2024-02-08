@@ -23,8 +23,8 @@ const Facefoot = () => {
           <Grid item xs={12} sm={4}>
             <AppLogo />
             <Typography variant="body2" color="text.secondary">
-              We are the MadaPark company, dedicated to providing the best
-              service to our customers.
+              Nous sommes la société MadaPark, dédiée à fournir le meilleur
+              service à nos clients.
             </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
