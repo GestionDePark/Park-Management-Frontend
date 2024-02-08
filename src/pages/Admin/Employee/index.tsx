@@ -1,13 +1,12 @@
 import { Dashy } from '../Dashy';
 import { Button } from '@mui/material';
 import TableEmployee from '@/pages/Admin/components/TableEmployee.tsx';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import EmployeeApi from '@/api/employee.ts';
 import { EmployeeData } from '@/api/types.ts';
 import useErrorPopup from '@/hooks/useErrorPopup.tsx';
 
 const Employee = () => {
-  const renderIncr = useRef(0);
   const [errorNode, setErrorNode] = useErrorPopup();
 
   const [selectLength, setSelectLength] = useState(0);
@@ -15,21 +14,12 @@ const Employee = () => {
 
   const [data, setData] = useState<EmployeeData[]>([]);
   const fetchData = async () => {
-    try {
-      setData(await EmployeeApi.findAll());
-    } catch (e) {
-      setErrorNode(e as Error);
-    }
+    setData(await EmployeeApi.findAll());
   };
 
   useEffect(() => {
-    if (renderIncr.current === 1) {
-      fetchData();
-    }
-    if (renderIncr.current < 2) {
-      renderIncr.current++;
-    }
-  }, []);
+    fetchData();
+  });
 
   const handleDelete = async () => {
     for (const i of selected) {
