@@ -1,49 +1,47 @@
 import { Dashy } from '../Dashy';
-import {
-  Button,
-  Checkbox,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material';
-import { ChangeEventHandler, useState } from 'react';
-import EmployeeApi from '@/api/employee';
-import storage from '@/core/storage.ts';
+import { Button } from '@mui/material';
+import TableEmployee from '@/pages/Admin/components/TableEmployee.tsx';
+import { useEffect, useRef, useState } from 'react';
+import EmployeeApi from '@/api/employee.ts';
+import { EmployeeData } from '@/api/types.ts';
 import useErrorPopup from '@/hooks/useErrorPopup.tsx';
-import data from './data';
 
 const Employee = () => {
-  const [selectAllDispatch, setAllDispatch] = useState(false);
-  const [selected, setSelected] = useState<number[]>([]);
+  const renderIncr = useRef(0);
   const [errorNode, setErrorNode] = useErrorPopup();
 
-  const onCheckAll: ChangeEventHandler<HTMLInputElement> = (ev) => {
-    const isChecked: boolean = ev.target.checked;
-    setAllDispatch(isChecked);
-    if (isChecked) {
-      setSelected(data.map((_, i) => i));
-    } else {
-      setSelected([]);
-    }
+  const [selectLength, setSelectLength] = useState(0);
+  const [selected, setSelected] = useState<number[]>([]);
+
+  const [data, setData] = useState<EmployeeData[]>([]);
+  const fetchData = async () => {
+    setData(await EmployeeApi.findAll());
   };
 
+  useEffect(() => {
+    if (renderIncr.current === 1) {
+      fetchData();
+    }
+    if (renderIncr.current < 2) {
+      renderIncr.current++;
+    }
+  }, []);
+
   const handleDelete = async () => {
-    const adminToken: string = storage.local.get('user_token');
     for (const i of selected) {
-      EmployeeApi.delete(data[i].id, adminToken)
-        .then(() => {
+      EmployeeApi.delete(data[i].id)
+        .then(async () => {
           setSelected((p) => {
             return p.filter((v) => v !== i);
           });
+          setData(await EmployeeApi.findAll());
         })
         .catch(setErrorNode);
     }
   };
 
   const SwitchBtnFeatures = () => {
-    switch (selected.length) {
+    switch (selectLength) {
       case 0:
         return <Button variant="outlined">Add new</Button>;
       case 1:
@@ -64,17 +62,8 @@ const Employee = () => {
     }
   };
 
-  const handleOn = (index: number): ChangeEventHandler<HTMLInputElement> => {
-    return (ev) => {
-      const isChecked: boolean = ev.target.checked;
-      if (isChecked) {
-        setSelected((p) => p.concat(index));
-      } else {
-        setSelected((p) => {
-          return p.filter((v) => v !== index);
-        });
-      }
-    };
+  const handleSelect = (indexes: number[]) => {
+    setSelectLength(indexes.length);
   };
 
   return (
@@ -86,42 +75,7 @@ const Employee = () => {
           <SwitchBtnFeatures />
         </div>
       </div>
-
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <Checkbox
-                onChange={onCheckAll}
-                value={selectAllDispatch}
-                checked={selectAllDispatch}
-              />
-              <span>User</span>
-            </TableCell>
-            <TableCell>Job</TableCell>
-            <TableCell>Salary</TableCell>
-            <TableCell>Joined at</TableCell>
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {data.map((v, i) => (
-            <TableRow key={v.joinedAt + '_' + v.user + '_' + i}>
-              <TableCell>
-                <Checkbox
-                  checked={selected.includes(i)}
-                  value={selected.includes(i)}
-                  onChange={handleOn(i)}
-                />
-                <span>{v.user}</span>
-              </TableCell>
-              <TableCell>{v.job}</TableCell>
-              <TableCell>{v.salary}</TableCell>
-              <TableCell>{v.joinedAt}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <TableEmployee data={data} onSelect={handleSelect} />
       {errorNode}
     </Dashy>
   );

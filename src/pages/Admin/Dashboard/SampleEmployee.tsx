@@ -1,20 +1,19 @@
 import pageRoutes from '@/pageRoutes.ts';
-import {
-  styled,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material';
+import { styled } from '@mui/material';
 import { Link as L } from 'react-router-dom';
+import TableEmployee from '@/pages/Admin/components/TableEmployee.tsx';
+import { EmployeeData } from '@/api/types.ts';
 
 const Link = styled(L)(({ theme }) => ({
   color: theme.palette.primary.main,
   fontWeight: 'bold',
 }));
 
-const SampleEmployee = () => {
+interface Props {
+  data: EmployeeData[];
+}
+
+const SampleEmployee = ({ data }: Props) => {
   return (
     <div>
       <div className="flex px-2 items-center justify-between">
@@ -24,40 +23,7 @@ const SampleEmployee = () => {
         </Link>
       </div>
 
-      <Table stickyHeader>
-        <TableHead>
-          <TableCell>User</TableCell>
-          <TableCell>Job</TableCell>
-          <TableCell>Salary</TableCell>
-          <TableCell>Joined at</TableCell>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-            <TableCell>hello</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <TableEmployee data={data} limitData={10} />
     </div>
   );
 };
