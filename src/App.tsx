@@ -5,8 +5,13 @@ import pageRoutes from '@/pageRoutes.ts';
 import Dashboard from '@/pages/Admin/Dashboard';
 import Employee from '@/pages/Admin/Employee';
 import SecureRoute from '@/layer/SecureRoute.tsx';
+<<<<<<< HEAD
 import { Login } from '@/pages/Login/index.tsx';
 import NavLi from './pages/Visitor/Navlink';
+=======
+import Login from '@/pages/auth/login';
+import Path from './pages/Visitor/Path';
+>>>>>>> b541103 (style: reformat Visitor)
 
 const App = () => {
   return (
@@ -22,7 +27,7 @@ const App = () => {
             Component={SecureRoute(Employee, ['admin'])}
           />
           <Route path={pageRoutes.login} Component={Login} />
-          <Route path={pageRoutes.home} Component={NavLi} />
+          <Route path={pageRoutes.home} Component={Path} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

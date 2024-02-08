@@ -1,10 +1,6 @@
-import NavLi from '../Navlink';
-
+import { Box, Typography } from '@mui/material';
 const Facefoot = () => {
-  <>
-    <NavLi />
-    <div className="container mx-auto px-4">Facefoot</div>;
-  </>;
+  return <Box className="container mx-auto px-4">Facefoot</Box>
 };
 
 export default Facefoot;
