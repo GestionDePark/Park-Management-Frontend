@@ -1,21 +1,27 @@
 import fetcher from '@/api/fetcher.ts';
 import { SignupData, UserData } from '@/services/auth/types.ts';
+import getAuthorization from '@/utils/getAuthorization.ts';
 
 class User {
-  public static async findOne(token: string): Promise<UserData> {
+  public static async findSelf(): Promise<UserData> {
     return (
       await fetcher.get('/user/self', {
-        headers: { Authorization: 'Bearer ' + token },
+        headers: getAuthorization(),
       })
     ).data;
   }
 
-  public static async createUser(
-    data: SignupData,
-    adminToken: string,
-  ): Promise<UserData> {
+  public static async findById(id: string): Promise<UserData> {
+    return (
+      await fetcher.get(`/user/${encodeURIComponent(id)}`, {
+        headers: getAuthorization(),
+      })
+    ).data;
+  }
+
+  public static async createUser(data: SignupData): Promise<UserData> {
     return await fetcher.post('/user', data, {
-      headers: { Authorization: 'Bearer ' + adminToken },
+      headers: getAuthorization(),
     });
   }
 }
