@@ -7,7 +7,7 @@ const Container = () => {
       {' '}
       {/* Ajoutez du padding de 2 unités (par exemple) */}
       <Typography color="green" variant="h5" textAlign="center">
-        Les trésors naturels préservés de Madagascar
+        Madagascar's preserved natural treasures
       </Typography>
       <Typography
         pt={5}
@@ -18,18 +18,18 @@ const Container = () => {
         variant="h6"
         textAlign="center"
       >
-        Des espèces uniques sur terre. Considéré par tous les scientifiques
-        comme un « sanctuaire de la nature », Madagascar recèle une faune et une
-        flore exceptionnelles. Pas moins de 19000 espèces végétales ont été
-        répertoriées dont 1000 sortes d’orchidées. Un record mondial. Et c’est
-        sur l’île rouge que l’on dénombre les variétés les plus diverses de
-        lémuriens, ainsi que les deux tiers des types de caméléon. Pas étonnant
-        que les parcs nationaux et les réserves y prolifèrent. Chacun propose sa
-        particularité. Visite de la caverne d’Ali Baba version « nature de
-        Madagascar », suivez le guide :
+        Unique species on earth. Considered by all scientists as a "sanctuary of
+        nature", Madagascar is home to exceptional flora and fauna. flora and
+        fauna. No fewer than 19,000 plant species have been including 1,000
+        types of orchid. A world record. And it's on the red island are the most
+        diverse varieties of lemur lemurs, as well as two-thirds of all
+        chameleon types. No wonder, then that national parks and reserves
+        proliferate here. Each with its own special features. Follow the guide
+        on a tour of the "Madagascar nature" version of Ali Baba's cave. follow
+        the guide:
       </Typography>
       <Typography color="green" variant="h5" textAlign="center">
-        #1 Parc National Tsingy de Bemaraha
+        #1 Tsingy de Bemaraha National Park
       </Typography>
       <Typography
         pt={5}
@@ -40,9 +40,10 @@ const Container = () => {
         variant="h6"
         textAlign="center"
       >
-        Si l’accès au parc s’avère un challenge sportif, le spectacle, à couper
-        le souffle, en vaut largement l’effort : Les Tsingy de Bemaraha,
-        véritables cathédrales de calcaire, sont les plus vastes de l’île Rouge.
+        Access to the park may be a sporting challenge, but the breathtaking
+        scenery is well worth the effort. is well worth the effort: the Tsingy
+        de Bemaraha, a veritable limestone cathedral, are the largest on the Red
+        Island.
       </Typography>
       <Box mb={5} className="flex justify-center">
         <img
