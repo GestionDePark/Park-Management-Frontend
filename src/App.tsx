@@ -5,6 +5,7 @@ import pageRoutes from '@/pageRoutes.ts';
 import Dashboard from '@/pages/Admin/Dashboard';
 import Employee from '@/pages/Admin/Employee';
 import SecureRoute from '@/layer/SecureRoute.tsx';
+import Login from '@/pages/auth/login';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             path={pageRoutes.adminEmployee}
             Component={SecureRoute(Employee, ['admin'])}
           />
+          <Route path={pageRoutes.login} Component={Login} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
