@@ -38,7 +38,7 @@ const Employee = () => {
     if (renderIncr.current < 2) {
       renderIncr.current++;
     }
-  }, []);
+  });
 
   const handleDelete = async () => {
     for (const i of selected) {

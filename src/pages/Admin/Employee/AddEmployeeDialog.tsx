@@ -19,7 +19,7 @@ export const AddEmployeeDialog = (
   const [users, setUsers] = useState<UserData[]>([]);
   const [jobs, setJobs] = useState<JobData[]>([]);
   const [firstRender, setFirstRender] = useState(true);
-  const { handleSubmit, register } = useForm<EmployeeData>();
+  const { register } = useForm<EmployeeData>();
 
   useEffect(() => {
     if (firstRender) {
@@ -27,7 +27,7 @@ export const AddEmployeeDialog = (
       User.findAll().then((users) => setUsers(users));
       Job.findAll().then((jobs) => setJobs(jobs));
     }
-  }, []);
+  }, [firstRender]);
 
   return (
     <Dialog {...props}>
