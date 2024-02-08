@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import EmployeeApi from '@/api/employee.ts';
 import { EmployeeData } from '@/api/types.ts';
 import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import { Dashy } from '../Dashy';
 
 const Employee = () => {
   const countFetch = useRef(0);
