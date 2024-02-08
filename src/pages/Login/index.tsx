@@ -48,7 +48,7 @@ export function Login() {
   const handleLogin = async (data: LoginData) => {
     try {
       await Auth.login(data);
-      nav(pageRoutes.home);
+      nav(pageRoutes.adminDashboard);
     } catch (e) {
       setErrorNode(e as Error);
       toggleLoading();
