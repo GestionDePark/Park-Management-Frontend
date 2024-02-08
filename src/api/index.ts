@@ -1,4 +1,4 @@
-import { LoginData } from '../pages/Login/loginFormData';
+import { LoginData } from '@/pages/Login/loginFormData';
 import fetcher from './fetcher.ts';
 
 async function login(credentials: LoginData): Promise<boolean> {
