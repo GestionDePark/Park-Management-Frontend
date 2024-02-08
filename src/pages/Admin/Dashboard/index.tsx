@@ -1,22 +1,25 @@
 import { Dashy } from '../Dashy';
 import { Paper } from '@mui/material';
 import SampleEmployee from '@/pages/Admin/Dashboard/SampleEmployee.tsx';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { EmployeeData } from '@/api/types.ts';
 import EmployeeApi from '@/api/employee.ts';
 import useErrorPopup from '@/hooks/useErrorPopup.tsx';
 
 const Dashboard = () => {
+  const countFetch = useRef(0);
   const [data, setData] = useState<EmployeeData[]>([]);
   const [errorNode, setErrorNode] = useErrorPopup();
 
   const fetchData = async () => {
     try {
-      const data = await EmployeeApi.findAll();
-      setData(data);
+      if (data.length === 0 && countFetch.current < 4) {
+        setData(await EmployeeApi.findAll());
+      }
     } catch (e) {
       setErrorNode(e as Error);
     }
+    countFetch.current++;
   };
 
   useEffect(() => {
