@@ -14,7 +14,7 @@ class Auth {
   private static currentUser: UserData | undefined;
 
   public static async getCurrentUser(): Promise<UserData | undefined> {
-    return this.currentUser || User.findOne(storage.local.get('user_token'));
+    return this.currentUser || User.findSelf();
   }
 
   public static async AuthenticationMethod(): Promise<boolean> {
@@ -40,13 +40,13 @@ class Auth {
 
   public static async login(data: LoginData): Promise<LoginResponse> {
     const res: LoginResponse = await getToken(data);
-    this.currentUser = await User.findOne(res.token);
+    this.currentUser = await User.findSelf();
     storage.local.set('user_token', res.token);
     return res;
   }
 
-  public static async signup(data: SignupData, adminToken: string) {
-    return User.createUser(data, adminToken);
+  public static async signup(data: SignupData) {
+    return User.createUser(data);
   }
 
   public static logout() {
