@@ -17,10 +17,11 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export function ForgotPasswordDialog(props: DialogProps & {
-  closeHandler: () => void;
-}) {
-
+export function ForgotPasswordDialog(
+  props: DialogProps & {
+    closeHandler: () => void;
+  },
+) {
   return (
     <>
       <Dialog
@@ -29,7 +30,7 @@ export function ForgotPasswordDialog(props: DialogProps & {
         keepMounted
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Forgot Password ?"}</DialogTitle>
+        <DialogTitle>{'Forgot Password ?'}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
             Please contact your administrator to restore your password

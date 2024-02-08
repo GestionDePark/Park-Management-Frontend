@@ -11,7 +11,7 @@ import Typography, { TypographyOwnProps } from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { IconButton, InputAdornment, ThemeProvider } from '@mui/material';
 import { useState } from 'react';
-import image from '../../assets/login/bg1.jpg'
+import image from '../../assets/login/bg1.jpg';
 import { theme } from './theme.ts';
 import { ForgotPasswordDialog } from './ForgotPasswordDialog.tsx';
 import { LoginData } from '@/services/auth/types.ts';
@@ -23,7 +23,12 @@ import { useForm } from 'react-hook-form';
 
 function Copyright(props: TypographyOwnProps) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
       {'Copyright © '}
       Park Management
       {` ${new Date().getFullYear()}`}
@@ -51,10 +56,10 @@ export function Login() {
   };
 
   const toggleLoading = () => {
-    setIsLoading(prevState => !prevState)
-  }
+    setIsLoading((prevState) => !prevState);
+  };
   const togglePasswordVisibility = () => {
-    setShowPassword(prev => !prev);
+    setShowPassword((prev) => !prev);
   };
   const _handleSubmit = (data: LoginData) => {
     toggleLoading();
@@ -94,7 +99,7 @@ export function Login() {
             boxShadow: '0 0 10px gray',
             backgroundColor: '#FFFFFFDD',
             backdropFilter: 'blur(5px)',
-            borderRadius: '15px'
+            borderRadius: '15px',
           }}
         >
           <Box
@@ -104,7 +109,7 @@ export function Login() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              borderRadius: '10px'
+              borderRadius: '10px',
             }}
           >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -114,9 +119,14 @@ export function Login() {
               Welcome to Park Management Admin
             </Typography>
             <Typography component="h1" variant="h5">
-            Please Sign In to continue
-          </Typography>
-            <Box component="form" onSubmit={handleSubmit(_handleSubmit)} noValidate sx={{ mt: 1 }}>
+              Please Sign In to continue
+            </Typography>
+            <Box
+              component="form"
+              onSubmit={handleSubmit(_handleSubmit)}
+              noValidate
+              sx={{ mt: 1 }}
+            >
               <TextField
                 margin="normal"
                 required
@@ -144,7 +154,7 @@ export function Login() {
                         {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
                       </IconButton>
                     </InputAdornment>
-                  )
+                  ),
                 }}
                 id="password"
                 autoComplete="current-password"
@@ -167,9 +177,13 @@ export function Login() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" onClick={() => {
-                    setForgotPasswordHint(prevState => !prevState);
-                  }}>
+                  <Link
+                    href="#"
+                    variant="body2"
+                    onClick={() => {
+                      setForgotPasswordHint((prevState) => !prevState);
+                    }}
+                  >
                     Forgot password?
                   </Link>
                 </Grid>
@@ -178,8 +192,10 @@ export function Login() {
           </Box>
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
-        <ForgotPasswordDialog open={forgotPasswordHint} closeHandler={() => {
-            setForgotPasswordHint(prevState => !prevState)
+        <ForgotPasswordDialog
+          open={forgotPasswordHint}
+          closeHandler={() => {
+            setForgotPasswordHint((prevState) => !prevState);
           }}
         />
         {nodeError}

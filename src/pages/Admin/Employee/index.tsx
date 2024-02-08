@@ -60,12 +60,16 @@ const Employee = () => {
   const SwitchBtnFeatures = () => {
     switch (selected.length) {
       case 0:
-        return <Button variant="outlined" onClick={() => {
-          setOpenAddDialog(true);
-        }}
-        >
-          Add new
-        </Button>;
+        return (
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setOpenAddDialog(true);
+            }}
+          >
+            Add new
+          </Button>
+        );
       case 1:
         return (
           <div className="center-flex gap-2">
@@ -107,11 +111,12 @@ const Employee = () => {
           sx: {
             borderRadius: '10px',
             minWidth: '420px',
-          }
+          },
         }}
-       onCloseClick={() => {
-         setOpenAddDialog(false)
-       }}/>
+        onCloseClick={() => {
+          setOpenAddDialog(false);
+        }}
+      />
     </Dashy>
   );
 };

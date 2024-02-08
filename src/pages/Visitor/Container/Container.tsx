@@ -28,11 +28,10 @@ const Container = () => {
         particularité. Visite de la caverne d’Ali Baba version « nature de
         Madagascar », suivez le guide :
       </Typography>
-        <Typography color="green" variant="h5" textAlign="center">
-          #1 Parc National Tsingy de Bemaraha
-        </Typography>
-
-        <Typography
+      <Typography color="green" variant="h5" textAlign="center">
+        #1 Parc National Tsingy de Bemaraha
+      </Typography>
+      <Typography
         pt={5}
         pr={30}
         pb={5}
@@ -41,9 +40,11 @@ const Container = () => {
         variant="h6"
         textAlign="center"
       >
-        Si l’accès au parc s’avère un challenge sportif, le spectacle, à couper le souffle, en vaut largement l’effort : Les Tsingy de Bemaraha, véritables cathédrales de calcaire, sont les plus vastes de l’île Rouge.
+        Si l’accès au parc s’avère un challenge sportif, le spectacle, à couper
+        le souffle, en vaut largement l’effort : Les Tsingy de Bemaraha,
+        véritables cathédrales de calcaire, sont les plus vastes de l’île Rouge.
       </Typography>
-      <Box mb={5} className='flex justify-center'>
+      <Box mb={5} className="flex justify-center">
         <img
           src={bemaraha}
           alt="Image"
@@ -53,7 +54,7 @@ const Container = () => {
             justifyContent: 'center',
           }}
         />
-        </Box>
+      </Box>
     </Box>
   );
 };
