@@ -1,8 +1,8 @@
 import fetcher from '@/api/fetcher.ts';
-import { EmployeeData } from '@/api/types.ts';
 import getAuthorization from '@/utils/getAuthorization.ts';
+import { EmployeeData } from '@/api/types/Employee.type.ts';
 
-class Employee {
+class EmployeeProvider {
   public static async delete(id: string): Promise<EmployeeData> {
     return (
       await fetcher.delete(`/employee/${encodeURIComponent(id)}`, {
@@ -20,4 +20,4 @@ class Employee {
   }
 }
 
-export default Employee;
+export default EmployeeProvider;

@@ -1,8 +1,8 @@
 import fetcher from '@/api/fetcher.ts';
-import { JobData } from '@/api/types.ts';
 import getAuthorization from '@/utils/getAuthorization.ts';
+import { JobData } from '@/api/types/Job.type.ts';
 
-class Job {
+class JobProvider {
   public static async findAll(): Promise<JobData[]> {
     return (await fetcher.get('/job', { headers: getAuthorization() })).data;
   }
@@ -16,4 +16,4 @@ class Job {
   }
 }
 
-export default Job;
+export default JobProvider;

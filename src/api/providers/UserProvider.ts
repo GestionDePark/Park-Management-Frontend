@@ -2,7 +2,7 @@ import fetcher from '@/api/fetcher.ts';
 import { SignupData, UserData } from '@/services/auth/types.ts';
 import getAuthorization from '@/utils/getAuthorization.ts';
 
-class User {
+class UserProvider {
   public static async findSelf(): Promise<UserData> {
     return (
       await fetcher.get('/user/self', {
@@ -34,4 +34,4 @@ class User {
   }
 }
 
-export default User;
+export default UserProvider;
