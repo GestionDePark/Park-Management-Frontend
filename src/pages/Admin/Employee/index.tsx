@@ -1,11 +1,11 @@
 import { Button } from '@mui/material';
-import TableEmployee from '@/pages/Admin/components/TableEmployee.tsx';
+import TableEmployee from '@/pages/Admin/components/TableEmployee';
 import { useEffect, useRef, useState } from 'react';
-import EmployeeApi from '@/api/employee.ts';
-import { EmployeeData } from '@/api/types.ts';
-import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import EmployeeApi from '@/api/providers/EmployeeProvider';
+import { EmployeeData } from '@/api/types/Employee.type';
+import useErrorPopup from '@/hooks/useErrorPopup';
 import { Dashy } from '../Dashy';
-import { AddEmployeeDialog } from '@/pages/Admin/Employee/AddEmployeeDialog.tsx';
+import { AddEmployeeDialog } from '@/pages/Admin/Employee/AddEmployeeDialog';
 
 const Employee = () => {
   const renderIncr = useRef(0);

@@ -6,9 +6,9 @@ import {
   UserData,
 } from './types';
 import storage from '@/core/storage';
-import getToken from '@/api/auth.ts';
+import AuthProvider from '@/api/providers/AuthProvider';
 import Exception from './Exception';
-import User from '@/api/User.ts';
+import User from '@/api/providers/UserProvider';
 
 class Auth {
   private static currentUser: UserData | undefined;
@@ -39,7 +39,7 @@ class Auth {
   }
 
   public static async login(data: LoginData): Promise<LoginResponse> {
-    const res: LoginResponse = await getToken(data);
+    const res: LoginResponse = await AuthProvider.getToken(data);
     storage.local.set('user_token', res.token);
     this.currentUser = await User.findSelf();
     return res;

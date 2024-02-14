@@ -1,6 +1,6 @@
-import fetcher from '@/api/fetcher.ts';
-import { SignupData, UserData } from '@/services/auth/types.ts';
-import getAuthorization from '@/utils/getAuthorization.ts';
+import fetcher from '@/api/fetcher';
+import { SignupData, UserData } from '@/services/auth/types';
+import getAuthorization from '@/utils/getAuthorization';
 
 class UserProvider {
   public static async findSelf(): Promise<UserData> {

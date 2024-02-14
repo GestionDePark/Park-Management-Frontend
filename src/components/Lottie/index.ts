@@ -1,3 +1,3 @@
-import TreeLoading from './TreeLoading.tsx';
+import TreeLoading from './TreeLoading';
 
 export { TreeLoading };

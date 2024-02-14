@@ -1,10 +1,10 @@
 import { Dashy } from '../Dashy';
 import { Paper } from '@mui/material';
-import SampleEmployee from '@/pages/Admin/Dashboard/SampleEmployee.tsx';
+import SampleEmployee from '@/pages/Admin/Dashboard/SampleEmployee';
 import { useEffect, useRef, useState } from 'react';
-import { EmployeeData } from '@/api/types.ts';
-import EmployeeApi from '@/api/employee.ts';
-import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import { EmployeeData } from '@/api/types/Employee.type';
+import EmployeeApi from '@/api/providers/EmployeeProvider';
+import useErrorPopup from '@/hooks/useErrorPopup';
 
 const Dashboard = () => {
   const countFetch = useRef(0);

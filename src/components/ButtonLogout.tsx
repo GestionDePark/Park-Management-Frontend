@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import pageRoutes from '@/pageRoutes.ts';
+import pageRoutes from '@/pageRoutes';
 import Auth from '@/services/auth';
 import { MdLogout } from 'react-icons/md';
 

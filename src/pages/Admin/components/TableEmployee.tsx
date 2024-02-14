@@ -6,9 +6,9 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import RowEmployee from '@/pages/Admin/components/RowEmployee.tsx';
+import RowEmployee from '@/pages/Admin/components/RowEmployee';
 import { ChangeEvent, ChangeEventHandler, useState } from 'react';
-import { EmployeeData } from '@/api/types.ts';
+import { EmployeeData } from '@/api/types/Employee.type';
 
 interface Props {
   data: EmployeeData[];

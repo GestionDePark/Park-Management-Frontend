@@ -1,9 +1,9 @@
 import { Button, TextField } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import pageRoutes from '@/pageRoutes.ts';
+import pageRoutes from '@/pageRoutes';
 import { useForm } from 'react-hook-form';
-import { LoginData } from '@/services/auth/types.ts';
-import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import { LoginData } from '@/services/auth/types';
+import useErrorPopup from '@/hooks/useErrorPopup';
 import Auth from '@/services/auth';
 
 const FormLogin = () => {

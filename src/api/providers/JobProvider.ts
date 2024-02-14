@@ -1,6 +1,6 @@
-import fetcher from '@/api/fetcher.ts';
-import getAuthorization from '@/utils/getAuthorization.ts';
-import { JobData } from '@/api/types/Job.type.ts';
+import fetcher from '@/api/fetcher';
+import getAuthorization from '@/utils/getAuthorization';
+import { JobData } from '@/api/types/Job.type';
 
 class JobProvider {
   public static async findAll(): Promise<JobData[]> {

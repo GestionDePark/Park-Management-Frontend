@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import FormLogin from '@/pages/auth/login/FormLogin.tsx';
+import FormLogin from '@/pages/auth/login/FormLogin';
 import { TreeLoading } from '@/components/Lottie';
 
 const Login = () => {

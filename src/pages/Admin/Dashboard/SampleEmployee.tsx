@@ -1,8 +1,8 @@
-import pageRoutes from '@/pageRoutes.ts';
+import pageRoutes from '@/pageRoutes';
 import { styled } from '@mui/material';
 import { Link as L } from 'react-router-dom';
-import TableEmployee from '@/pages/Admin/components/TableEmployee.tsx';
-import { EmployeeData } from '@/api/types.ts';
+import TableEmployee from '@/pages/Admin/components/TableEmployee';
+import { EmployeeData } from '@/api/types/Employee.type';
 
 const Link = styled(L)(({ theme }) => ({
   color: theme.palette.primary.main,

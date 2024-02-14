@@ -1,6 +1,6 @@
-import fetcher from '@/api/fetcher.ts';
-import getAuthorization from '@/utils/getAuthorization.ts';
-import { EmployeeData } from '@/api/types/Employee.type.ts';
+import fetcher from '@/api/fetcher';
+import getAuthorization from '@/utils/getAuthorization';
+import { EmployeeData } from '@/api/types/Employee.type';
 
 class EmployeeProvider {
   public static async delete(id: string): Promise<EmployeeData> {

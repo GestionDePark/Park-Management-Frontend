@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
-import Header from './Header.tsx';
-import Aside from '@/pages/Admin/Dashy/Aside.tsx';
+import Header from './Header';
+import Aside from '@/pages/Admin/Dashy/Aside';
 
 const Dashy = ({ children }: PropsWithChildren) => {
   return (

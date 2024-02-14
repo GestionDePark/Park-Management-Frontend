@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import PageLoading from '@/components/PageLoading.tsx';
-import pageRoutes from '@/pageRoutes.ts';
+import PageLoading from '@/components/PageLoading';
+import pageRoutes from '@/pageRoutes';
 import Auth from '@/services/auth';
-import useErrorPopup from '@/hooks/useErrorPopup.tsx';
-import { AvailableRole } from '@/services/auth/types.ts';
+import useErrorPopup from '@/hooks/useErrorPopup';
+import { AvailableRole } from '@/services/auth/types';
 
 /**
  * A user should be authenticated or/and authorized following the auth method

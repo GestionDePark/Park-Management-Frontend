@@ -1,9 +1,9 @@
 import { List, Paper } from '@mui/material';
 import { MdDashboard, MdWork } from 'react-icons/md';
 import { GrUserWorker } from 'react-icons/gr';
-import ButtonLogout from '@/components/ButtonLogout.tsx';
-import pageRoutes from '@/pageRoutes.ts';
-import ListItem from '@/pages/Admin/Dashy/ListItem.tsx';
+import ButtonLogout from '@/components/ButtonLogout';
+import pageRoutes from '@/pageRoutes';
+import ListItem from '@/pages/Admin/Dashy/ListItem';
 
 const Aside = () => {
   return (

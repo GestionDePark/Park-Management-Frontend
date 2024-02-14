@@ -1,5 +1,5 @@
-import fetcher from '@/api/fetcher.ts';
-import { LoginData, LoginResponse } from '@/services/auth/types.ts';
+import fetcher from '@/api/fetcher';
+import { LoginData, LoginResponse } from '@/services/auth/types';
 
 class AuthProvider {
   public static async getToken(data: LoginData): Promise<LoginResponse> {

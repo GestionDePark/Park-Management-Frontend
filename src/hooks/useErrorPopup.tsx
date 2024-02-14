@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import ErrorPopup from '../components/ErrorPopup.tsx';
+import ErrorPopup from '../components/ErrorPopup';
 
 const useErrorPopup = (): [ReactNode, (error: Error) => void] => {
   const [node, setNode] = useState<ReactNode | null>(null);

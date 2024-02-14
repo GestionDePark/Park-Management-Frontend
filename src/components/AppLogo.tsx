@@ -1,7 +1,7 @@
 import { MdPark } from 'react-icons/md';
 import { styled } from '@mui/material';
 import { Link } from 'react-router-dom';
-import pageRoutes from '@/pageRoutes.ts';
+import pageRoutes from '@/pageRoutes';
 
 const CustomContainer = styled(Link)(({ theme }) => ({
   display: 'flex',
