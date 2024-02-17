@@ -11,6 +11,14 @@ class UserProvider {
     ).data;
   }
 
+  public static async findAll(): Promise<UserData[]> {
+    return (
+      await fetcher.get('/user', {
+        headers: getAuthorization(),
+      })
+    ).data;
+  }
+
   public static async findById(id: string): Promise<UserData> {
     return (
       await fetcher.get(`/user/${encodeURIComponent(id)}`, {
@@ -20,14 +28,24 @@ class UserProvider {
   }
 
   public static async createUser(data: SignupData): Promise<UserData> {
-    return await fetcher.post('/user', data, {
-      headers: getAuthorization(),
-    });
+    return (
+      await fetcher.post('/user', data, {
+        headers: getAuthorization(),
+      })
+    ).data;
   }
 
-  public static async findAll(): Promise<UserData[]> {
+  public static async update(id: string, data: SignupData): Promise<UserData> {
     return (
-      await fetcher.get('/user', {
+      await fetcher.patch(`/user/${encodeURIComponent(id)}`, data, {
+        headers: getAuthorization(),
+      })
+    ).data;
+  }
+
+  public static async delete(id: string): Promise<UserData> {
+    return (
+      await fetcher.delete(`/user/${encodeURIComponent(id)}`, {
         headers: getAuthorization(),
       })
     ).data;

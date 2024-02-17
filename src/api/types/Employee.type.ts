@@ -5,3 +5,5 @@ export interface EmployeeData {
   salary: number;
   joinedAt: string;
 }
+
+export interface EmployeeInput extends Omit<EmployeeData, 'id' | 'joinedAt'> {}
