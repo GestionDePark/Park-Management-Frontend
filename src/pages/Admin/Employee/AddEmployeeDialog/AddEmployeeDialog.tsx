@@ -19,7 +19,7 @@ export const AddEmployeeDialog = (
   const [users, setUsers] = useState<UserData[]>([]);
   const [jobs, setJobs] = useState<JobData[]>([]);
   const [firstRender, setFirstRender] = useState(true);
-  const { register } = useForm<EmployeeData>();
+  const { register, handleSubmit } = useForm<EmployeeData>();
 
   useEffect(() => {
     if (firstRender) {
@@ -29,8 +29,23 @@ export const AddEmployeeDialog = (
     }
   }, [firstRender]);
 
+  const handleDataToSend = (data: EmployeeData) => {
+    console.log(data);
+  };
+
   return (
-    <Dialog {...props}>
+    <Dialog
+      fullWidth
+      onSubmit={handleSubmit(handleDataToSend)}
+      PaperProps={{
+        component: 'form',
+        sx: {
+          borderRadius: '10px',
+          minWidth: '420px',
+        },
+      }}
+      {...props}
+    >
       <DialogTitle>Add new Employee</DialogTitle>
       <DialogContent
         sx={{
