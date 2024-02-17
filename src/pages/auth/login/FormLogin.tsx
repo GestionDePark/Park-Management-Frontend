@@ -1,10 +1,11 @@
 import { Button, TextField } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import pageRoutes from '@/pageRoutes.ts';
+import pageRoutes from '@/pageRoutes';
 import { useForm } from 'react-hook-form';
-import { LoginData } from '@/services/auth/types.ts';
-import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import { LoginData } from '@/services/auth/types';
+import useErrorPopup from '@/hooks/useErrorPopup';
 import Auth from '@/services/auth';
+import storage from '@/core/storage';
 
 const FormLogin = () => {
   const nav = useNavigate();
@@ -13,8 +14,16 @@ const FormLogin = () => {
 
   const handleLogin = async (data: LoginData) => {
     try {
-      await Auth.login(data);
-      nav(pageRoutes.home);
+      const response = await Auth.login(data);
+      storage.local.set('user_token', response.token);
+      const v = await Auth.getCurrentUser();
+      if (v) {
+        if (v?.isAdmin) {
+          nav(pageRoutes.adminDashboard);
+        } else {
+          nav(pageRoutes.employeePage);
+        }
+      }
     } catch (e) {
       setErrorNode(e as Error);
     }

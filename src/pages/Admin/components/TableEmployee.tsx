@@ -6,9 +6,9 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import RowEmployee from '@/pages/Admin/components/RowEmployee.tsx';
+import RowEmployee from '@/pages/Admin/components/RowEmployee';
 import { ChangeEvent, ChangeEventHandler, useState } from 'react';
-import { EmployeeData } from '@/api/types.ts';
+import { EmployeeData } from '@/api/types';
 
 interface Props {
   data: EmployeeData[];
@@ -69,10 +69,10 @@ const TableEmployee = ({ data, onSelect, limitData }: Props) => {
           <RowEmployee
             data={v}
             key={v.id}
-            checkbox={!!onSelect}
-            selected={selected}
             rowIndex={i}
             handleOn={handleOn}
+            selected={selected}
+            checkbox={!!onSelect}
           />
         ))}
       </TableBody>

@@ -1,4 +1,4 @@
-import storage from '@/core/storage.ts';
+import storage from '@/core/storage';
 
 const getAuthorization = () => {
   return {

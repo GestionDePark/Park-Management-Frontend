@@ -1,11 +1,11 @@
-import AppLogo from '@/components/AppLogo.tsx';
+import AppLogo from '@/components/AppLogo';
 import { Link } from 'react-router-dom';
-import pageRoutes from '@/pageRoutes.ts';
+import pageRoutes from '@/pageRoutes';
 import { Avatar, Skeleton } from '@mui/material';
 import Auth from '@/services/auth';
 import { useEffect, useState } from 'react';
-import { UserData } from '@/services/auth/types.ts';
-import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import { UserData } from '@/services/auth/types';
+import useErrorPopup from '@/hooks/useErrorPopup';
 
 const Header = () => {
   const [currentUser, setCurrentUser] = useState<UserData | null>(null);

@@ -1,1 +1,1 @@
-export { default as Dashy } from './Dashy.tsx';
+export { default as Dashy } from './Dashy';

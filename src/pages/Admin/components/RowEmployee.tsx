@@ -1,10 +1,10 @@
 import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
-import { EmployeeData, JobData } from '@/api/types.ts';
+import { EmployeeData, JobData } from '@/api/types';
 import { Checkbox, Skeleton, TableCell, TableRow } from '@mui/material';
-import Job from '@/api/job.ts';
-import StyledDate from '@/utils/StyledDate.ts';
-import User from '@/api/User.ts';
-import { UserData } from '@/services/auth/types.ts';
+import Job from '@/api/providers/JobProvider';
+import StyledDate from '@/utils/StyledDate';
+import User from '@/api/providers/UserProvider';
+import { UserData } from '@/services/auth/types';
 
 interface Props {
   rowIndex: number;
