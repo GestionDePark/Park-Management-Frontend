@@ -7,8 +7,8 @@ import {
 } from './types';
 import storage from '@/core/storage';
 import AuthProvider from '@/api/providers/AuthProvider';
-import Exception from './Exception';
 import User from '@/api/providers/UserProvider';
+import Exception from './Exception';
 
 class Auth {
   private static currentUser: UserData | undefined;
