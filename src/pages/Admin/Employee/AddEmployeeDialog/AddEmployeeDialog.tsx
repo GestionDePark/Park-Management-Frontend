@@ -1,104 +1,129 @@
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import { Autocomplete, Button, TextField } from '@mui/material';
-import DialogActions from '@mui/material/DialogActions';
-import Dialog, { DialogProps } from '@mui/material/Dialog';
-import { useEffect, useState } from 'react';
-import User from '@/api/providers/UserProvider';
-import { UserData } from '@/services/auth/types';
+import { Dialog, DialogProps, Step, StepLabel, Stepper } from '@mui/material';
 import { EmployeeData, JobData } from '@/api/types';
-import Job from '@/api/providers/JobProvider';
-import DialogContentText from '@mui/material/DialogContentText';
 import { useForm } from 'react-hook-form';
+import StyleSheet from '@/utils/StyleSheet';
+import DialogContent from '@mui/material/DialogContent';
+import EmployeeProvider from '@/api/providers/EmployeeProvider';
+import UserProvider from '@/api/providers/UserProvider';
+import { SignupData } from '@/services/auth/types';
+import FirstForm from '@/pages/Admin/Employee/AddEmployeeDialog/FirstForm';
+import { useState } from 'react';
+import SecondForm from '@/pages/Admin/Employee/AddEmployeeDialog/SecondForm';
+import useErrorPopup from '@/hooks/useErrorPopup';
+import DialogTitle from '@mui/material/DialogTitle';
 
-export const AddEmployeeDialog = (
-  props: DialogProps & {
-    onCloseClick: () => void;
-  },
-) => {
-  const [users, setUsers] = useState<UserData[]>([]);
-  const [jobs, setJobs] = useState<JobData[]>([]);
-  const [firstRender, setFirstRender] = useState(true);
-  const { register, handleSubmit } = useForm<EmployeeData>();
+interface Forms {
+  user: SignupData;
+  job: JobData;
+  salary: number;
+}
 
-  useEffect(() => {
-    if (firstRender) {
-      setFirstRender(false);
-      User.findAll().then((users) => setUsers(users));
-      Job.findAll().then((jobs) => setJobs(jobs));
+interface Props {
+  onAddedData(data: EmployeeData): void;
+  onCloseClick: () => void;
+}
+
+const AddEmployeeDialog = ({
+  onAddedData,
+  onCloseClick,
+  ...props
+}: DialogProps & Props) => {
+  const [errorNode, setErrorNode] = useErrorPopup();
+  const [currentStep, setCurrentStep] = useState(0);
+  const form = useForm<Forms>();
+
+  const handleEndForm = async ({ user, job, salary }: Forms) => {
+    try {
+      const userCreated = await UserProvider.createUser(user);
+      const response = await EmployeeProvider.create({
+        jobId: job.id,
+        salary: +salary,
+        userId: userCreated.id,
+      } as EmployeeData);
+      onAddedData(response);
+      onCloseClick();
+    } catch (e) {
+      setErrorNode(e as Error);
     }
-  }, [firstRender]);
+  };
 
-  const handleDataToSend = (data: EmployeeData) => {
-    console.log(data);
+  const handleDataToSend = async (data: Forms) => {
+    switch (currentStep) {
+      case 0:
+        return setCurrentStep(1);
+
+      case 1:
+        return handleEndForm(data);
+
+      default:
+        return setCurrentStep(0);
+    }
+  };
+
+  const handlePrevious = () => {
+    setCurrentStep((p) => p - 1);
+  };
+
+  const SwitchForm = () => {
+    switch (currentStep) {
+      case 0:
+        return <FirstForm form={form} />;
+
+      case 1:
+        return <SecondForm form={form} onPreviousClick={handlePrevious} />;
+
+      default:
+        return null;
+    }
+  };
+
+  const handleClose = () => {
+    if (onCloseClick) {
+      onCloseClick();
+    }
+    setCurrentStep(0);
+    form.reset();
   };
 
   return (
     <Dialog
+      {...props}
       fullWidth
-      onSubmit={handleSubmit(handleDataToSend)}
+      onSubmit={form.handleSubmit(handleDataToSend)}
       PaperProps={{
         component: 'form',
-        sx: {
-          borderRadius: '10px',
-          minWidth: '420px',
-        },
+        sx: styles.dialog,
       }}
-      {...props}
+      onClose={handleClose}
     >
-      <DialogTitle>Add new Employee</DialogTitle>
-      <DialogContent
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 2,
-        }}
-      >
-        <DialogContentText>
-          Please fill out these required information to add a new Employee
-        </DialogContentText>
-        <Autocomplete
-          fullWidth
-          getOptionLabel={(option) => `${option.firstName} ${option.lastName}`}
-          id="user-list"
-          options={users}
-          aria-required
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="User"
-              required
-              {...register('userId')}
-            />
-          )}
-        />
-        <Autocomplete
-          fullWidth
-          getOptionLabel={(option) => `${option.name}`}
-          id="jobs-list"
-          options={jobs}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Job"
-              required
-              {...register('jobId')}
-            />
-          )}
-        />
-        <TextField
-          type={'number'}
-          label={'Salary'}
-          required
-          {...register('salary')}
-        />
+      <DialogTitle>Add Employee</DialogTitle>
+      <DialogContent sx={styles.content}>
+        <Stepper tabIndex={currentStep}>
+          <Step>
+            <StepLabel>Create user</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Job details</StepLabel>
+          </Step>
+        </Stepper>
+
+        <SwitchForm />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={props.onCloseClick}>Cancel</Button>
-        <Button type="submit" variant={'contained'}>
-          Save
-        </Button>
-      </DialogActions>
+      {errorNode}
     </Dialog>
   );
 };
+
+const styles = StyleSheet({
+  dialog: {
+    borderRadius: '1.2rem',
+    minWidth: '420px',
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2rem',
+  },
+});
+
+export { AddEmployeeDialog, type Forms };
