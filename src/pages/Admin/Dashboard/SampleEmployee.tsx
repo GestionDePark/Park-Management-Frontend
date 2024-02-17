@@ -2,7 +2,7 @@ import pageRoutes from '@/pageRoutes';
 import { styled } from '@mui/material';
 import { Link as L } from 'react-router-dom';
 import TableEmployee from '@/pages/Admin/components/TableEmployee';
-import { EmployeeData } from '@/api/types/Employee.type';
+import { EmployeeData } from '@/api/types';
 
 const Link = styled(L)(({ theme }) => ({
   color: theme.palette.primary.main,

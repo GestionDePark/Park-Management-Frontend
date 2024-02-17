@@ -2,8 +2,8 @@ import { Dashy } from '../Dashy';
 import { Paper } from '@mui/material';
 import SampleEmployee from '@/pages/Admin/Dashboard/SampleEmployee';
 import { useEffect, useRef, useState } from 'react';
-import { EmployeeData } from '@/api/types/Employee.type';
-import EmployeeApi from '@/api/providers/EmployeeProvider';
+import { EmployeeData } from '@/api/types';
+import EmployeeApi from '@/api/employee';
 import useErrorPopup from '@/hooks/useErrorPopup';
 
 const Dashboard = () => {

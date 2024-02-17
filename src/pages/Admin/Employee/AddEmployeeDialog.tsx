@@ -4,11 +4,10 @@ import { Autocomplete, Button, TextField } from '@mui/material';
 import DialogActions from '@mui/material/DialogActions';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
 import { useEffect, useState } from 'react';
-import User from '@/api/providers/UserProvider';
+import User from '@/api/User';
 import { UserData } from '@/services/auth/types';
-import { EmployeeData } from '@/api/types/Employee.type';
-import { JobData } from '@/api/types/Job.type';
-import Job from '@/api/providers/JobProvider';
+import { EmployeeData, JobData } from '@/api/types';
+import Job from '@/api/job';
 import DialogContentText from '@mui/material/DialogContentText';
 import { useForm } from 'react-hook-form';
 

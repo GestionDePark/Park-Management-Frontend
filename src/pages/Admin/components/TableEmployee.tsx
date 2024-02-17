@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import RowEmployee from '@/pages/Admin/components/RowEmployee';
 import { ChangeEvent, ChangeEventHandler, useState } from 'react';
-import { EmployeeData } from '@/api/types/Employee.type';
+import { EmployeeData } from '@/api/types';
 
 interface Props {
   data: EmployeeData[];

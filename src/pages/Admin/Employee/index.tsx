@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
 import TableEmployee from '@/pages/Admin/components/TableEmployee';
 import { useEffect, useRef, useState } from 'react';
-import EmployeeApi from '@/api/providers/EmployeeProvider';
-import { EmployeeData } from '@/api/types/Employee.type';
+import EmployeeApi from '@/api/employee';
+import { EmployeeData } from '@/api/types';
 import useErrorPopup from '@/hooks/useErrorPopup';
 import { Dashy } from '../Dashy';
 import { AddEmployeeDialog } from '@/pages/Admin/Employee/AddEmployeeDialog';

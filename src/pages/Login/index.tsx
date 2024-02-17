@@ -12,12 +12,12 @@ import Container from '@mui/material/Container';
 import { IconButton, InputAdornment, ThemeProvider } from '@mui/material';
 import { useState } from 'react';
 import image from '../../assets/login/bg1.jpg';
-import { theme } from './theme.ts';
-import { ForgotPasswordDialog } from './ForgotPasswordDialog.tsx';
-import { LoginData } from '@/services/auth/types.ts';
+import { theme } from './theme';
+import { ForgotPasswordDialog } from './ForgotPasswordDialog';
+import { LoginData } from '@/services/auth/types';
 import Auth from '@/services/auth';
-import pageRoutes from '@/pageRoutes.ts';
-import useErrorPopup from '@/hooks/useErrorPopup.tsx';
+import pageRoutes from '@/pageRoutes';
+import useErrorPopup from '@/hooks/useErrorPopup';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
