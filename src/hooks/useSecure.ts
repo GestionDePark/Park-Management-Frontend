@@ -11,7 +11,6 @@ interface Options {
 
 const useSecure = (hasOneRole?: AvailableRole[], options?: Options) => {
   const nav = useNavigate();
-  const [renderFirst, setRenderFirst] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [canAccess, setCanAccess] = useState(false);
 
@@ -28,8 +27,7 @@ const useSecure = (hasOneRole?: AvailableRole[], options?: Options) => {
   };
 
   useEffect(() => {
-    if (isLoading && renderFirst) {
-      setRenderFirst(false);
+    if (isLoading) {
       trySecure(hasOneRole)
         .then((accessible: boolean) => {
           setCanAccess(accessible);
@@ -44,7 +42,7 @@ const useSecure = (hasOneRole?: AvailableRole[], options?: Options) => {
 
 const trySecure = async (hasOneRole?: AvailableRole[]) => {
   const authenticated: boolean = await Auth.AuthenticationMethod();
-  if (!hasOneRole) {
+  if (!hasOneRole || hasOneRole.length === 0) {
     if (authenticated) {
       return true;
     }
