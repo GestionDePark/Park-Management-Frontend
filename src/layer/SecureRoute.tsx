@@ -20,9 +20,8 @@ const SecureRoute = (
   authorizedRole?: AvailableRole[],
   options?: Options,
 ) => {
-  const nav = useNavigate();
-
   const SecureComponent = () => {
+    const nav = useNavigate();
     const { isLoading, canAccess } = useSecure(authorizedRole);
     if (!canAccess) nav(options?.navigation || pageRoutes.login);
     return isLoading ? (
