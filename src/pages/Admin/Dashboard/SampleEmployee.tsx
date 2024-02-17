@@ -1,5 +1,5 @@
 import pageRoutes from '@/pageRoutes';
-import { styled } from '@mui/material';
+import { styled, Typography } from '@mui/material';
 import { Link as L } from 'react-router-dom';
 import TableEmployee from '@/pages/Admin/components/TableEmployee';
 import { EmployeeData } from '@/api/types';
@@ -17,8 +17,10 @@ const SampleEmployee = ({ data }: Props) => {
   return (
     <div>
       <div className="flex px-2 items-center justify-between">
-        <h2 className="text-2xl font-bold">Your employees</h2>
-        <Link to={pageRoutes.adminEmployee} className="hover:underline">
+        <Typography variant="h5" fontWeight="bold">
+          Your employees
+        </Typography>
+        <Link to={pageRoutes.adminEmployee} className="text-lg hover:underline">
           See More
         </Link>
       </div>

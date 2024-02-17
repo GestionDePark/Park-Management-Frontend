@@ -86,6 +86,7 @@ const UpdateEmployeeDialog = ({
         sx: styles.dialog,
       }}
       onClose={handleClose}
+      sx={styles.dialogbackdrop}
       onSubmit={form.handleSubmit(handleDataToSend)}
     >
       <DialogTitle>Modify employee data</DialogTitle>
@@ -121,6 +122,9 @@ const UpdateEmployeeDialog = ({
 };
 
 const styles = StyleSheet({
+  dialogbackdrop: {
+    backdropFilter: 'blur(3px)',
+  },
   dialog: {
     borderRadius: '1.2rem',
   },
