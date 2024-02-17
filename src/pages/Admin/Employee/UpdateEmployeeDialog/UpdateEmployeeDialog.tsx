@@ -46,7 +46,11 @@ const UpdateEmployeeDialog = ({
           template['salary'] = +data.salary;
         }
         template['jobId'] = data.jobId;
-        const requestData = Object.assign(employeeData, template);
+        const { id, salary, userId, jobId, joinedAt } = employeeData;
+        const requestData = Object.assign(
+          { id, salary, userId, jobId, joinedAt },
+          template,
+        );
         const responseData = await EmployeeProvider.update(
           employeeData?.id,
           requestData,
