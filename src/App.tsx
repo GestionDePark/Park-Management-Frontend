@@ -6,8 +6,8 @@ import Dashboard from '@/pages/Admin/Dashboard';
 import Employee from '@/pages/Admin/Employee';
 import Jobs from '@/pages/Admin/Jobs';
 import Visitor from './pages/Visitor';
-import ProtectRoutes from '@/layer/ProtectRoutes';
 import Login from '@/pages/auth/login';
+import SecureRoute from '@/layer/SecureRoute';
 
 const App = () => {
   return (
@@ -15,16 +15,13 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route
-            element={
-              <ProtectRoutes
-                navigationFailedAuth={pageRoutes.login}
-                hasOneRole={['admin']}
-              />
-            }
-          >
-            <Route path={pageRoutes.adminDashboard} Component={Dashboard} />
-            <Route path={pageRoutes.adminEmployee} Component={Employee} />
-          </Route>
+            path={pageRoutes.adminDashboard}
+            Component={SecureRoute(Dashboard, ['admin'])}
+          />
+          <Route
+            path={pageRoutes.adminEmployee}
+            Component={SecureRoute(Employee, ['admin'])}
+          />
 
           <Route path={pageRoutes.adminJobs} Component={Jobs} />
           <Route path={pageRoutes.login} Component={Login} />
