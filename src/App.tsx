@@ -4,10 +4,10 @@ import muiTheme from '@/core/muiTheme';
 import pageRoutes from '@/pageRoutes';
 import Dashboard from '@/pages/Admin/Dashboard';
 import Employee from '@/pages/Admin/Employee';
-import { Login } from '@/pages/Login';
 import Jobs from '@/pages/Admin/Jobs';
-import Path from './pages/Visitor/Path';
+import Visitor from './pages/Visitor';
 import ProtectRoutes from '@/layer/ProtectRoutes';
+import Login from '@/pages/auth/login';
 
 const App = () => {
   return (
@@ -28,7 +28,7 @@ const App = () => {
 
           <Route path={pageRoutes.adminJobs} Component={Jobs} />
           <Route path={pageRoutes.login} Component={Login} />
-          <Route path={pageRoutes.home} Component={Path} />
+          <Route path={pageRoutes.home} Component={Visitor} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
