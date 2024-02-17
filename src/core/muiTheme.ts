@@ -1,9 +1,9 @@
-import { createTheme, Theme, ThemeOptions } from '@mui/material';
+import { colors, createTheme, Theme, ThemeOptions } from '@mui/material';
 
 const THEME_LIGHT: ThemeOptions = {
   palette: {
     primary: {
-      main: '#44f636',
+      main: colors.green['400'],
       contrastText: '#fff',
     },
   },
@@ -12,7 +12,8 @@ const THEME_LIGHT: ThemeOptions = {
 const THEME_DARK: ThemeOptions = {
   palette: {
     primary: {
-      main: '#37f12c',
+      main: colors.green['600'],
+      contrastText: '#000',
     },
   },
 };
