@@ -1,7 +1,6 @@
 /// <reference types="vite/client" />
 interface ImportMetaEnv {
-  readonly REMOTE_URL: string;
-  readonly IS_DEV: boolean;
+  readonly USE_REMOTE: boolean;
 }
 
 interface ImportMeta {
