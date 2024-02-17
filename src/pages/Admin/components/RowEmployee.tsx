@@ -1,9 +1,9 @@
 import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import { EmployeeData, JobData } from '@/api/types';
 import { Checkbox, Skeleton, TableCell, TableRow } from '@mui/material';
-import Job from '@/api/job';
+import Job from '@/api/providers/JobProvider';
 import StyledDate from '@/utils/StyledDate';
-import User from '@/api/User';
+import User from '@/api/providers/UserProvider';
 import { UserData } from '@/services/auth/types';
 
 interface Props {
