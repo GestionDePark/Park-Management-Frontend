@@ -1,16 +1,21 @@
-import Navli from './Navli';
-import FaceBody from './Container/Facebody';
-import Container from './Container/Container';
-import Facefoot from './Container/Facefoot';
+import { Header } from './Header';
+import BannerHelloSection from './BannerHelloSection';
+import AboutSection from './AboutSection';
+import VisitSection from './VisitSection';
+import EmployeeSection from './EmployeeSection';
+import Footer from './Footer';
 
-const Path = () => {
+const Visitor = () => {
   return (
-    <div>
-      <Navli />
-      <FaceBody />
-      <Container />
-      <Facefoot />
+    <div className="w-full">
+      <Header />
+      <BannerHelloSection />
+      <AboutSection />
+      <VisitSection />
+      <EmployeeSection />
+      <Footer />
     </div>
   );
 };
-export default Path;
+
+export default Visitor;
