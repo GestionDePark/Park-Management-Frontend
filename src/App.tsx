@@ -8,6 +8,7 @@ import Jobs from '@/pages/Admin/Jobs';
 import Visitor from './pages/Visitor';
 import Login from '@/pages/auth/login';
 import SecureRoute from '@/layer/SecureRoute';
+import { PageNotFound } from '@/layer/PageNotFound';
 
 const App = () => {
   return (
@@ -22,10 +23,15 @@ const App = () => {
             path={pageRoutes.adminEmployee}
             Component={SecureRoute(Employee, ['admin'])}
           />
+          <Route
+            path={pageRoutes.adminJobs}
+            Component={SecureRoute(Jobs, ['admin'])}
+          />
 
-          <Route path={pageRoutes.adminJobs} Component={Jobs} />
           <Route path={pageRoutes.login} Component={Login} />
           <Route path={pageRoutes.home} Component={Visitor} />
+
+          <Route path="*" Component={PageNotFound} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
