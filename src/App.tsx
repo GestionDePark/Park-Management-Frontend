@@ -4,10 +4,10 @@ import muiTheme from '@/core/muiTheme';
 import pageRoutes from '@/pageRoutes';
 import Dashboard from '@/pages/Admin/Dashboard';
 import Employee from '@/pages/Admin/Employee';
-import SecureRoute from '@/layer/SecureRoute';
 import { Login } from '@/pages/Login';
 import Jobs from '@/pages/Admin/Jobs';
 import Path from './pages/Visitor/Path';
+import ProtectRoutes from '@/layer/ProtectRoutes';
 
 const App = () => {
   return (
@@ -15,13 +15,17 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route
-            path={pageRoutes.adminDashboard}
-            Component={SecureRoute(Dashboard, ['admin'])}
-          />
-          <Route
-            path={pageRoutes.adminEmployee}
-            Component={SecureRoute(Employee, ['admin'])}
-          />
+            element={
+              <ProtectRoutes
+                navigationFailedAuth={pageRoutes.login}
+                hasOneRole={['admin']}
+              />
+            }
+          >
+            <Route path={pageRoutes.adminDashboard} Component={Dashboard} />
+            <Route path={pageRoutes.adminEmployee} Component={Employee} />
+          </Route>
+
           <Route path={pageRoutes.adminJobs} Component={Jobs} />
           <Route path={pageRoutes.login} Component={Login} />
           <Route path={pageRoutes.home} Component={Path} />
