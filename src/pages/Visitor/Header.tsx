@@ -1,7 +1,6 @@
 import AppLogo from '@/components/AppLogo';
-import { PropsWithChildren, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Button } from '@mui/material';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { Tab, Tabs } from '@mui/material';
 
 const Header = () => {
   const [changeHeader, setChangeHeader] = useState(false);
@@ -19,35 +18,46 @@ const Header = () => {
     };
   });
 
+  const [value, setValue] = useState(0);
+  const handleChange = (_: SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
   return (
     <header
       className={`w-full flex justify-between p-2 fixed top-0 transition right-0 z-[1000] ${changeHeader ? 'bg-white' : ''}`}
     >
       <AppLogo />
 
-      <nav
-        className={`center-flex gap-2 px-3 ${changeHeader ? 'text-black' : 'text-white'}`}
+      <Tabs
+        value={value}
+        role="navigation"
+        onChange={handleChange}
+        aria-label="nav tabs example"
       >
-        <SpaLink href="#about">About us</SpaLink>
-        <SpaLink href="#visit">Visit</SpaLink>
-        <SpaLink href="#employee">Employee</SpaLink>
-      </nav>
+        <LinkTab scrolled={changeHeader} label="About us" href="#about" />
+        <LinkTab scrolled={changeHeader} label="Visit" href="#visit" />
+        <LinkTab scrolled={changeHeader} label="Employee" href="#employee" />
+      </Tabs>
     </header>
   );
 };
 
-const SpaLink = ({ href, children }: PropsWithChildren<{ href: string }>) => {
-  const hash: string = useLocation().hash;
-  const isActive: boolean = hash === href;
+interface LinkTabProps {
+  scrolled: boolean;
+  label?: string;
+  href?: string;
+  selected?: boolean;
+}
 
+const LinkTab = ({ scrolled, ...rest }: LinkTabProps) => {
   return (
-    <Button
-      href={href}
-      className="px-2 py-1"
-      variant={isActive ? 'outlined' : 'text'}
-    >
-      {children}
-    </Button>
+    <Tab
+      component="a"
+      sx={{ color: scrolled ? 'black' : 'white' }}
+      aria-current={rest.selected && 'page'}
+      {...rest}
+    />
   );
 };
 
