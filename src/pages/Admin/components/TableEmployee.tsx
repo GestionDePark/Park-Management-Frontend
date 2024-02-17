@@ -69,10 +69,10 @@ const TableEmployee = ({ data, onSelect, limitData }: Props) => {
           <RowEmployee
             data={v}
             key={v.id}
-            checkbox={!!onSelect}
-            selected={selected}
             rowIndex={i}
             handleOn={handleOn}
+            selected={selected}
+            checkbox={!!onSelect}
           />
         ))}
       </TableBody>
