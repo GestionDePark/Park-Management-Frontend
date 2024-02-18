@@ -62,7 +62,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <nav className="flex flex-col w-full items-center gap-3">
+        <nav className="flex flex-col mx-10  gap-3">
           <Link to={pageRoutes.adminJobs}>Jobs</Link>
           <Link to={pageRoutes.adminDashboard}>Administrator</Link>
           <Link to="#">Legacy</Link>
@@ -70,12 +70,12 @@ const Footer = () => {
         </nav>
 
         <nav className="flex flex-col w-full items-center gap-3">
-          <Link to="#">About us</Link>
+          <Link to="#about">About us</Link>
           <Link to="#">Privacy</Link>
           <Link to="#">Help</Link>
         </nav>
 
-        <nav className="flex flex-col w-full text-end items-end gap-3">
+        <nav className="flex flex-col w-full  gap-3">
           <Link to="#">Blog</Link>
           <Link to="#">Careers</Link>
           <Link to="#">Terms of use</Link>
