@@ -23,7 +23,7 @@ const Header = () => {
     <header className="flex justify-between p-2">
       <AppLogo />
 
-      <Link to={pageRoutes.profileAdmin} className="center-flex gap-2">
+      <Link to={pageRoutes.profile} className="center-flex gap-2">
         <div className="flex flex-col text-end">
           <span className="leading-tight text-lg font-bold">
             {currentUser?.lastName || <Skeleton />}
