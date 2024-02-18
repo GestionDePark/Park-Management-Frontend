@@ -11,6 +11,8 @@ import {
 } from '@mui/icons-material';
 import Copyright from '@/components/Copyright';
 import { Divider } from '@mui/material';
+import pageRoutes from '@/pageRoutes';
+import AppProperty from '@/assets/appProperty';
 
 const Footer = () => {
   return (
@@ -40,39 +42,40 @@ const Footer = () => {
       <Divider />
 
       <div className="flex justify-between px-5 pt-3">
-        <div className="w-full">
+        <div className="w-full flex flex-col gap-4">
           <span className="font-bold text-xl">
             Pass a wonderful day at the park
           </span>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
               <Phone />
-              <span>034 00 400 10</span>
+              <span>{AppProperty.contact}</span>
             </div>
             <div className="flex items-center gap-2">
               <Email />
-              <span>park.mada@contact.park</span>
+              <span>{AppProperty.email}</span>
             </div>
             <div className="flex items-center gap-2">
               <LocationOnOutlined />
-              <span>Madagascar, Antananarivo, 401 rue ferré</span>
+              <span>{AppProperty.location}</span>
             </div>
           </div>
         </div>
 
-        <nav className="flex flex-col w-full items-center">
-          <Link to="#">Jobs</Link>
+        <nav className="flex flex-col w-full items-center gap-3">
+          <Link to={pageRoutes.adminJobs}>Jobs</Link>
+          <Link to={pageRoutes.adminDashboard}>Administrator</Link>
           <Link to="#">Legacy</Link>
           <Link to="#">Hiring</Link>
         </nav>
 
-        <nav className="flex flex-col w-full items-center">
+        <nav className="flex flex-col w-full items-center gap-3">
           <Link to="#">About us</Link>
           <Link to="#">Privacy</Link>
           <Link to="#">Help</Link>
         </nav>
 
-        <nav className="flex flex-col w-full text-end items-end">
+        <nav className="flex flex-col w-full text-end items-end gap-3">
           <Link to="#">Blog</Link>
           <Link to="#">Careers</Link>
           <Link to="#">Terms of use</Link>
