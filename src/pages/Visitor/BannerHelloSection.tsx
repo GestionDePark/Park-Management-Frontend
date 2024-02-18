@@ -1,4 +1,5 @@
 import { Button, Typography } from '@mui/material';
+import AppProperty from '@/assets/appProperty';
 
 const BannerHelloSection = () => {
   return (
@@ -10,7 +11,7 @@ const BannerHelloSection = () => {
           draggable={false}
           className="w-full h-full object-cover"
         />
-        <div className="w-full h-full backdrop-blur absolute top-0 right-0 bg-black bg-opacity-55"></div>
+        <div className="w-full h-full backdrop-blur-[2px] absolute top-0 right-0 bg-black bg-opacity-55"></div>
       </div>
 
       <div className="relative px-3 py-5 mt-[8rem] mb-10 text-white flex flex-col gap-3">
@@ -21,8 +22,10 @@ const BannerHelloSection = () => {
           <Typography variant="h5">Spend a good day in our park</Typography>
         </div>
         <div className="flex items-center gap-4">
-          <Button>Contact us</Button>
-          <Button variant="outlined" href="#visit">
+          <Button variant="outlined" href={`tel:${AppProperty.contact}`}>
+            Contact us
+          </Button>
+          <Button variant="contained" href="#visit">
             Visit
           </Button>
         </div>

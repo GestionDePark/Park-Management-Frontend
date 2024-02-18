@@ -90,6 +90,7 @@ const AddEmployeeDialog = ({
       {...props}
       fullWidth
       onSubmit={form.handleSubmit(handleDataToSend)}
+      sx={styles.dialogBackdrop}
       PaperProps={{
         component: 'form',
         sx: styles.dialog,
@@ -115,6 +116,9 @@ const AddEmployeeDialog = ({
 };
 
 const styles = StyleSheet({
+  dialogBackdrop: {
+    backdropFilter: 'blur(3px)',
+  },
   dialog: {
     borderRadius: '1.2rem',
     minWidth: '420px',

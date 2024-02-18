@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Auth from '@/services/auth';
 import { useNavigate } from 'react-router-dom';
 import pageRoutes from '@/pageRoutes';
+import useErrorPopup from '@/hooks/useErrorPopup';
 
 interface Options {
   notAuthenticatedRedirect?: string;
@@ -13,8 +14,10 @@ const useSecure = (hasOneRole?: AvailableRole[], options?: Options) => {
   const nav = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [canAccess, setCanAccess] = useState(false);
+  const [errorNode, setErrorNode] = useErrorPopup();
 
   const checkError = (e: Error) => {
+    setErrorNode(e);
     if (e.message === 'not_authenticated') {
       nav(options?.notAuthenticatedRedirect || pageRoutes.login);
     } else if (e.message === 'not_authorized') {
@@ -37,7 +40,7 @@ const useSecure = (hasOneRole?: AvailableRole[], options?: Options) => {
     }
   });
 
-  return { isLoading, canAccess };
+  return { isLoading, canAccess, errorNode };
 };
 
 const trySecure = async (hasOneRole?: AvailableRole[]) => {

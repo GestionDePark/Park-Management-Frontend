@@ -9,6 +9,7 @@ import {
 import RowEmployee from '@/pages/Admin/components/RowEmployee';
 import { ChangeEvent, ChangeEventHandler, useState } from 'react';
 import { EmployeeData } from '@/api/types';
+import NoContent from './NoContent';
 
 interface Props {
   data: EmployeeData[];
@@ -48,35 +49,40 @@ const TableEmployee = ({ data, onSelect, limitData }: Props) => {
     };
   };
 
-  return (
-    <Table stickyHeader>
-      <TableHead>
-        <TableRow>
-          <TableCell>
-            {onSelect ? <Checkbox onChange={handleSelectAll} /> : null}
-            <span>Firstname</span>
-          </TableCell>
-          <TableCell>Lastname</TableCell>
-          <TableCell>Email</TableCell>
-          <TableCell>Job</TableCell>
-          <TableCell>Salary</TableCell>
-          <TableCell>Joined at</TableCell>
-        </TableRow>
-      </TableHead>
+  const listData = limitData ? data.slice(0, limitData) : data;
 
-      <TableBody>
-        {(limitData ? data.slice(0, limitData) : data).map((v, i) => (
-          <RowEmployee
-            data={v}
-            key={v.id}
-            rowIndex={i}
-            handleOn={handleOn}
-            selected={selected}
-            checkbox={!!onSelect}
-          />
-        ))}
-      </TableBody>
-    </Table>
+  return (
+    <div>
+      <Table stickyHeader>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              {onSelect ? <Checkbox onChange={handleSelectAll} /> : null}
+              <span>Firstname</span>
+            </TableCell>
+            <TableCell>Lastname</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Job</TableCell>
+            <TableCell>Salary</TableCell>
+            <TableCell>Joined at</TableCell>
+          </TableRow>
+        </TableHead>
+
+        <TableBody>
+          {listData.map((v, i) => (
+            <RowEmployee
+              data={v}
+              key={v.id}
+              rowIndex={i}
+              handleOn={handleOn}
+              selected={selected}
+              checkbox={!!onSelect}
+            />
+          ))}
+        </TableBody>
+      </Table>
+      {listData.length === 0 ? <NoContent message="No employee yet" /> : null}
+    </div>
   );
 };
 

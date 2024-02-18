@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import Header from './Header';
+import Header from '@/components/Header';
 import Aside from '@/pages/Admin/Dashy/Aside';
 
 const Dashy = ({ children }: PropsWithChildren) => {

@@ -46,7 +46,11 @@ const UpdateEmployeeDialog = ({
           template['salary'] = +data.salary;
         }
         template['jobId'] = data.jobId;
-        const requestData = Object.assign(employeeData, template);
+        const { id, salary, userId, jobId, joinedAt } = employeeData;
+        const requestData = Object.assign(
+          { id, salary, userId, jobId, joinedAt },
+          template,
+        );
         const responseData = await EmployeeProvider.update(
           employeeData?.id,
           requestData,
@@ -82,6 +86,7 @@ const UpdateEmployeeDialog = ({
         sx: styles.dialog,
       }}
       onClose={handleClose}
+      sx={styles.dialogbackdrop}
       onSubmit={form.handleSubmit(handleDataToSend)}
     >
       <DialogTitle>Modify employee data</DialogTitle>
@@ -117,6 +122,9 @@ const UpdateEmployeeDialog = ({
 };
 
 const styles = StyleSheet({
+  dialogbackdrop: {
+    backdropFilter: 'blur(3px)',
+  },
   dialog: {
     borderRadius: '1.2rem',
   },

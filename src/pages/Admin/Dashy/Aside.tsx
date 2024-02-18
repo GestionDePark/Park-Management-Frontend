@@ -4,13 +4,15 @@ import { GrUserWorker } from 'react-icons/gr';
 import ButtonLogout from '@/components/ButtonLogout';
 import pageRoutes from '@/pageRoutes';
 import ListItem from '@/pages/Admin/Dashy/ListItem';
+import StyleSheet from '@/utils/StyleSheet';
 
 const Aside = () => {
   return (
     <aside className="h-full p-2 sticky top-0">
       <Paper
-        className="h-full flex flex-col justify-between px-2"
+        className="h-full flex flex-col justify-between px-5 py-3"
         elevation={4}
+        sx={styles.paper}
       >
         <List>
           <ListItem
@@ -33,5 +35,11 @@ const Aside = () => {
     </aside>
   );
 };
+
+const styles = StyleSheet({
+  paper: {
+    borderRadius: '.8rem',
+  },
+});
 
 export default Aside;

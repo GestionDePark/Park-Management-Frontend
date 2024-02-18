@@ -22,13 +22,18 @@ const SecureRoute = (
 ) => {
   const SecureComponent = () => {
     const nav = useNavigate();
-    const { isLoading, canAccess } = useSecure(authorizedRole);
+    const { isLoading, canAccess, errorNode } = useSecure(authorizedRole);
     if (!canAccess) nav(options?.navigation || pageRoutes.login);
-    return isLoading ? (
-      <PageLoading />
-    ) : Component === null ? null : canAccess ? (
-      <Component />
-    ) : null;
+    return (
+      <>
+        {isLoading ? (
+          <PageLoading />
+        ) : Component === null ? null : canAccess ? (
+          <Component />
+        ) : null}
+        {errorNode}
+      </>
+    );
   };
 
   return () => <SecureComponent />;

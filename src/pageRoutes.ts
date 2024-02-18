@@ -3,7 +3,7 @@ const pageRoutes = {
   login: '/login',
   signup: '/signup',
   employeePage: '/employee',
-  profileAdmin: '/admin/profile',
+  profile: '/profile',
   adminEmployee: '/admin/employee',
   adminJobs: '/admin/jobs',
   adminDashboard: '/admin/dash',

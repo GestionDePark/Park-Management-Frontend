@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { EmployeeData } from '@/api/types/Employee.type';
 import EmployeeApi from '@/api/providers/EmployeeProvider';
 import useErrorPopup from '@/hooks/useErrorPopup';
+import AppUsesContext from '@/components/AppUsesContext';
 
 const Dashboard = () => {
   const countFetch = useRef(0);
@@ -30,9 +31,12 @@ const Dashboard = () => {
 
   return (
     <Dashy>
-      <Paper elevation={3} sx={{ padding: '1.2rem' }}>
+      <Paper elevation={3} sx={{ padding: '1.2rem', marginTop: '2rem' }}>
         <SampleEmployee data={data} />
       </Paper>
+      <div className="mt-8 py-5 px-4">
+        <AppUsesContext />
+      </div>
       {errorNode}
     </Dashy>
   );
