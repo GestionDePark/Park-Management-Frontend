@@ -16,7 +16,7 @@ import AppProperty from '@/assets/appProperty';
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col gap-2 bg-zinc-100">
+    <footer className="flex flex-col gap-3 bg-zinc-100">
       <div className="p-3 flex items-center justify-between">
         <AppLogo />
 
@@ -41,7 +41,7 @@ const Footer = () => {
 
       <Divider />
 
-      <div className="flex justify-between px-5 pt-3">
+      <div className="flex justify-between px-5 pb-3 pt-3">
         <div className="w-full flex flex-col gap-4">
           <span className="font-bold text-xl">
             Pass a wonderful day at the park
@@ -70,7 +70,7 @@ const Footer = () => {
         </nav>
 
         <nav className="flex flex-col w-full items-center gap-3">
-          <Link to="#about">About us</Link>
+          <a href="#about">About us</a>
           <Link to="#">Privacy</Link>
           <Link to="#">Help</Link>
         </nav>
