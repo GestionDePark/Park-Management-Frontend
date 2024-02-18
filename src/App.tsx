@@ -10,6 +10,7 @@ import Login from '@/pages/auth/login';
 import SecureRoute from '@/layer/SecureRoute';
 import { PageNotFound } from '@/layer/PageNotFound';
 import { Employee as EmployeePage } from '@/pages/Employee';
+import { Profile } from '@/pages/Profile';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path={pageRoutes.home} Component={Visitor} />
+          <Route path={pageRoutes.profile} Component={SecureRoute(Profile)} />
 
           <Route
             path={pageRoutes.adminDashboard}
