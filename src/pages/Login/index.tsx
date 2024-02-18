@@ -20,6 +20,7 @@ import pageRoutes from '@/pageRoutes';
 import useErrorPopup from '@/hooks/useErrorPopup';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import storage from '@/core/storage';
 
 function Copyright(props: TypographyOwnProps) {
   return (
@@ -47,11 +48,18 @@ export function Login() {
 
   const handleLogin = async (data: LoginData) => {
     try {
-      await Auth.login(data);
-      nav(pageRoutes.adminDashboard);
+      const response = await Auth.login(data);
+      storage.local.set('user_token', response.token);
+      const v = await Auth.getCurrentUser();
+      if (v) {
+        if (v?.isAdmin) {
+          nav(pageRoutes.adminDashboard);
+        } else {
+          nav(pageRoutes.employeePage);
+        }
+      }
     } catch (e) {
       setErrorNode(e as Error);
-      toggleLoading();
     }
   };
 

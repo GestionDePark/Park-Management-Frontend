@@ -6,11 +6,11 @@ import Dashboard from '@/pages/Admin/Dashboard';
 import EmployeeAdmin from '@/pages/Admin/Employee';
 import Jobs from '@/pages/Admin/Jobs';
 import Visitor from './pages/Visitor';
-import Login from '@/pages/auth/login';
 import SecureRoute from '@/layer/SecureRoute';
 import { PageNotFound } from '@/layer/PageNotFound';
 import { Employee as EmployeePage } from '@/pages/Employee';
 import { Profile } from '@/pages/Profile';
+import { Login } from '@/pages/Login';
 
 const App = () => {
   return (
