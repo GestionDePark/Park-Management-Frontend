@@ -7,7 +7,11 @@ import { useEffect, useState } from 'react';
 import { UserData } from '@/services/auth/types';
 import useErrorPopup from '@/hooks/useErrorPopup';
 
-const Header = () => {
+interface Props {
+  className?: string;
+}
+
+const Header = ({ className }: Props) => {
   const [currentUser, setCurrentUser] = useState<UserData | null>(null);
   const [errorNode, setErrorNode] = useErrorPopup();
 
@@ -20,7 +24,7 @@ const Header = () => {
   });
 
   return (
-    <header className="flex justify-between p-2">
+    <header className={className || 'flex justify-between p-2'}>
       <AppLogo />
 
       <Link to={pageRoutes.profile} className="center-flex gap-2">
