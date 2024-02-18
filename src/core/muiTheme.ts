@@ -6,6 +6,9 @@ const THEME_LIGHT: ThemeOptions = {
       main: colors.green['400'],
       contrastText: '#fff',
     },
+    info: {
+      main: '#000',
+    },
   },
 };
 
@@ -14,6 +17,9 @@ const THEME_DARK: ThemeOptions = {
     primary: {
       main: colors.green['600'],
       contrastText: '#000',
+    },
+    info: {
+      main: '#fff',
     },
   },
 };
