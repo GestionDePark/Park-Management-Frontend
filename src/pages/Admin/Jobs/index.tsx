@@ -6,6 +6,7 @@ import useErrorPopup from '@/hooks/useErrorPopup';
 import StyledCard from '@/pages/Admin/Jobs/StyledCard';
 import { Button, Divider, Typography } from '@mui/material';
 import StyleSheet from '@/utils/StyleSheet';
+import NoContent from '@/pages/Admin/components/NoContent';
 
 const Jobs = () => {
   const [errorNode, setErrorNode] = useErrorPopup();
@@ -31,6 +32,7 @@ const Jobs = () => {
       </div>
       <Divider />
       <div className="center-flex gap-5 p-5 flex-wrap mb-8">
+        {jobList.length === 0 ? <NoContent message="No Job yet" /> : null}
         {jobList.map((v) => (
           <StyledCard key={v.id}>{v.name}</StyledCard>
         ))}
